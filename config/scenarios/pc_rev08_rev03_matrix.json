@@ -1,0 +1,33 @@
+{
+  "protocol": "PC-REV08/REV03",
+  "status": "SCENARIO_MATRIX_RESEARCHER_APPROVED_NOT_DATA_HOMOLOGATION",
+  "total_fleet_synthetic": 450,
+  "horizons": [
+    {
+      "year": 2026,
+      "scenario_id": "E100",
+      "bev": 100
+    },
+    {
+      "year": 2026,
+      "scenario_id": "E200",
+      "bev": 200
+    },
+    {
+      "year": 2030,
+      "scenario_id": "E300",
+      "bev": 300
+    },
+    {
+      "year": 2038,
+      "scenario_id": "E450",
+      "bev": 450
+    }
+  ],
+  "retired_from_active_matrix": [
+    "E375",
+    "2050"
+  ],
+  "scope": "SYNTHETIC_COUNTERFACTUAL",
+  "note": "Matriz normativa nova; config/rev02/scenarios.json preservado para compatibilidade, NAO atualizado automaticamente."
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "relative_path": "config/experiments/example.yaml",
+    "bytes": 235,
+    "sha256": "cf303a4f92a904d87dd2c51f76457f36919fb1e28074a861c4029cfab2fc6fa1"
+  },
+  {
+    "relative_path": "docs/audit/AUDITORIA_PRE_IMPLEMENTACAO.md",
+    "bytes": 4619,
+    "sha256": "1bcb1899b325a423aa243a2b6e1bf3e9771b654dc111a60be095252043ee465e"
+  },
+  {
+    "relative_path": "docs/audit/M2_EXECUCAO_AMBIENTE_DEFINITIVO.md",
+    "bytes": 2137,
+    "sha256": "838eb355d5f9d39bf4a9674d82e1375ee59d52af492cdb35f56e95dfd62fed64"
+  },
+  {
+    "relative_path": "docs/audit/MANIFESTO_SHA256.json",
+    "bytes": 1765,
+    "sha256": "f484e969edeff84332cbfb64146267c8659ff2c31abab468ab49fb852fd91f4b"
+  },
+  {
+    "relative_path": "docs/audit/RELATORIO_HARMONIZACAO_M2.md",
+    "bytes": 2422,
+    "sha256": "ceb09feb1f2eebe9a8dcfd8a95a10f181d538b5b093eccb209fec3089bd0e41e"
+  },
+  {
+    "relative_path": "docs/audit/pytest_result.txt",
+    "bytes": 109,
+    "sha256": "29bba3d209c4d6634965dfb210d9f838ddfcf115c64204a59651684ea7158627"
+  },
+  {
+    "relative_path": "docs/metodologia/D28_Documento_Final_Consolidado_REV03_PC_REV08.md",
+    "bytes": 62609,
+    "sha256": "d242ec83cdc4785e286325922827d446866abe7faf88f7717ba2b9e9f5eb0848"
+  },
+  {
+    "relative_path": "docs/metodologia/Tutorial_D28_PyCharm_GitHub_PC_REV08_REV01.md",
+    "bytes": 36147,
+    "sha256": "dedb3c0d599b3aeb33e40ab8e592c24407dc6df15290cde40caba3620f60b87a"
+  },
+  {
+    "relative_path": "docs/protocolo/PC_REV08_Protocolo_Cientifico_Tecnico_Consolidado.docx",
+    "bytes": 43135,
+    "sha256": "3cef1eb22be27807ec4796e788c6e62c6ba2e734d1ee8e7490e536cf3c85a3c1"
+  },
+  {
+    "relative_path": "docs/protocolo/PC_REV08_Protocolo_Cientifico_Tecnico_Consolidado.md",
+    "bytes": 69349,
+    "sha256": "39b007dc278bc958204c19c20e7a55ce987fa46dd2bf0f2109629e4f2c60dcf1"
+  },
+  {
+    "relative_path": "docs/rastreabilidade/D28_Especificacao_Rastreabilidade_137_IDs.csv",
+    "bytes": 20533,
+    "sha256": "468bf1d98ae53172e93bddf47fb76e0a8cdb957058736bed5e8ce53cf77e4057"
+  },
+  {
+    "relative_path": "docs/rastreabilidade/ESTADO_DOS_BLOQUEIOS.csv",
+    "bytes": 558,
+    "sha256": "594643eb51604efb9bd020b2efc716c070be941cfb268245a15b9469f4512849"
+  },
+  {
+    "relative_path": "docs/rastreabilidade/MAPEAMENTO_137_IDS_B03_B06.csv",
+    "bytes": 71491,
+    "sha256": "dffdb0ea151d5c2dca35487c83685c4655aac11eda228ee555364abeeaf524e5"
+  },
+  {
+    "relative_path": "src/d28/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "relative_path": "src/d28/dispatch/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "relative_path": "src/d28/dispatch/milp.py",
+    "bytes": 7364,
+    "sha256": "d4edb3f55c7997ec7289fd25fcdf454779db814fad923c987cf0d6cd6cae0214"
+  },
+  {
+    "relative_path": "src/d28/dispatch/milp.py.bak",
+    "bytes": 685,
+    "sha256": "869a4c6dcef517b46d52b60ad745b97a1cd17db35209f1397f00026fa34a9953"
+  },
+  {
+    "relative_path": "src/d28/inputs.py",
+    "bytes": 2305,
+    "sha256": "5c0de06499c5af7620e0b6cbcf29ecc10d000f14612b0af4a9f007cf8fb725d8"
+  },
+  {
+    "relative_path": "src/d28/objectives/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "relative_path": "src/d28/objectives/metrics.py",
+    "bytes": 578,
+    "sha256": "3ae9df248b28437339c18dd167c7e251d0970754edb282d2444e10775d3a6edc"
+  },
+  {
+    "relative_path": "src/d28/optimization/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "relative_path": "src/d28/optimization/nsga2.py",
+    "bytes": 272,
+    "sha256": "10d113604353891a989e9ff51f9756fa68daeb5c4f4e7087c35feac4165b1bfa"
+  },
+  {
+    "relative_path": "src/d28/reporting/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "relative_path": "src/d28/reporting/pareto.py",
+    "bytes": 837,
+    "sha256": "af28d9a6b51b70a7af673e23242d2a6df87fceefb66b509fadc3cef5453a62ba"
+  },
+  {
+    "relative_path": "src/d28/reporting/plots.py",
+    "bytes": 1089,
+    "sha256": "c8886ce7344bf18ebf4203981f1934d97262f565bf3f1df11010b536bff53312"
+  },
+  {
+    "relative_path": "tests/physics/test_m2_scipy_reference.py",
+    "bytes": 572,
+    "sha256": "4b4d1f31c482dd04044cdfdf7936ea79f5012ec310d219f56b2478e73d9c920e"
+  },
+  {
+    "relative_path": "tests/physics/test_r0_aud01.py",
+    "bytes": 8133,
+    "sha256": "5e809ad72aa9b3107d76db86141514483d9da0106bd82ad348e33bb0c7610439"
+  },
+  {
+    "relative_path": "tests/physics/test_r0_milp.py",
+    "bytes": 3614,
+    "sha256": "864c19afdfffd7e522b41c76bfa0d3c70ec7a3dc0239d4b0096460e5580b0c14"
+  },
+  {
+    "relative_path": "tests/physics/test_r0_milp.py.bak",
+    "bytes": 3632,
+    "sha256": "af6cb361169d7f2032bd9172b319db155085bd692a208a403e4cf4f4dbd7c498"
+  },
+  {
+    "relative_path": "tests/physics/test_r0_smoke.py",
+    "bytes": 370,
+    "sha256": "8beaf2aa84789ee25cd41a9849f5c346bf7968d9e6e61d08b69853c47d11b337"
+  },
+  {
+    "relative_path": "tests/reporting/test_nondominance.py",
+    "bytes": 487,
+    "sha256": "e015eb820f9f2158cb74ee81c7e24d02d5604ef9dc551ce935f27b66c819fb9b"
+  },
+  {
+    "relative_path": "tests/test_inputs.py",
+    "bytes": 225,
+    "sha256": "c2e0e46a076d3cb743a14ff10da71caf829520c718a8d6c5725f51d213f0260f"
+  }
+]

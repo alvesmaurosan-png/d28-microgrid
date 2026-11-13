@@ -1,0 +1,12 @@
+{
+  "fleet_service_schedule_verified": false,
+  "individual_charging_mapping_verified": false,
+  "pv_roof_limit_reconciled": false,
+  "chp_fuel_contract_verified": false,
+  "gas_fleet_and_fueling_verified": false,
+  "economic_cost_components_verified": false,
+  "discounted_pkm_verified": false,
+  "grid_reinforcement_cost_verified": false,
+  "scenario_policy_approved": false,
+  "time_series_provenance_verified": false
+}

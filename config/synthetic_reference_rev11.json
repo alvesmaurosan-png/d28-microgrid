@@ -1,0 +1,33 @@
+{
+  "revision": "REV11",
+  "scope": "SYNTHETIC_COUNTERFACTUAL_ONLY",
+  "contract_path": "config/contrato_sintetico_rev11.json",
+  "economics_path": "config/economics/r0_f1_exploratory_2026.json",
+  "tariffs_path": "config/tariffs/rev07_scenarios_exploratory.json",
+  "tariff_id": "TOU_015_200_D2500",
+  "pkm_assumptions": {
+    "km_per_bus_day": 200,
+    "passengers_per_bus_km": 40,
+    "operating_days_per_year": 365,
+    "status": "SYNTHETIC_ILLUSTRATIVE_NOT_OBSERVED",
+    "sensitivity": {
+      "km_per_bus_day": [
+        150,
+        200,
+        250
+      ],
+      "passengers_per_bus_km": [
+        20,
+        40,
+        60
+      ]
+    }
+  },
+  "auxiliary_incremental_verified": false,
+  "routes": {
+    "R1": {},
+    "R2": {},
+    "R3": {}
+  },
+  "notice": "R1-R3 intentionally blocked until explicit route-specific CHP/fuel/biogas/CGOB parameters supplied; no zero cost assumptions."
+}

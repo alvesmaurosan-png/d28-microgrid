@@ -1,0 +1,62 @@
+{
+  "etapa": "MIGRACAO_DOCUMENTAL_E_REVISAO",
+  "arquivos": [
+    {
+      "origem": "docs/protocolo/PC_REV08_Protocolo_Cientifico_Tecnico_Consolidado.docx",
+      "destino": "docs/methodology/source_protocol/PC_REV08_Protocolo_Cientifico_Tecnico_Consolidado.docx",
+      "sha256": "3cef1eb22be27807ec4796e788c6e62c6ba2e734d1ee8e7490e536cf3c85a3c1",
+      "status": "COPIADO"
+    },
+    {
+      "origem": "docs/protocolo/PC_REV08_Protocolo_Cientifico_Tecnico_Consolidado.md",
+      "destino": "docs/methodology/source_protocol/PC_REV08_Protocolo_Cientifico_Tecnico_Consolidado.md",
+      "sha256": "39b007dc278bc958204c19c20e7a55ce987fa46dd2bf0f2109629e4f2c60dcf1",
+      "status": "COPIADO"
+    },
+    {
+      "origem": "docs/metodologia/D28_Documento_Final_Consolidado_REV03_PC_REV08.md",
+      "destino": "docs/methodology/source_specification/D28_Documento_Final_Consolidado_REV03_PC_REV08.md",
+      "sha256": "d242ec83cdc4785e286325922827d446866abe7faf88f7717ba2b9e9f5eb0848",
+      "status": "COPIADO"
+    },
+    {
+      "origem": "docs/metodologia/Tutorial_D28_PyCharm_GitHub_PC_REV08_REV01.md",
+      "destino": "docs/methodology/source_specification/Tutorial_D28_PyCharm_GitHub_PC_REV08_REV01.md",
+      "sha256": "dedb3c0d599b3aeb33e40ab8e592c24407dc6df15290cde40caba3620f60b87a",
+      "status": "COPIADO"
+    },
+    {
+      "origem": "data/raw/parametros/Base_Mestre_D28_PC_REV07_REV02.xlsx",
+      "destino": "data/raw/parameters/Base_Mestre_D28_PC_REV07_REV02.xlsx",
+      "sha256": "425248ab5436cf4c9891556fdb614d6326b8a5c06ec8aedec1b97fc402692336",
+      "status": "COPIADO"
+    },
+    {
+      "origem": "src/d28/dispatch/milp.py",
+      "destino": ".internal_review/src/d28/dispatch/milp.py",
+      "sha256": "d4edb3f55c7997ec7289fd25fcdf454779db814fad923c987cf0d6cd6cae0214",
+      "status": "COPIADO"
+    },
+    {
+      "origem": "src/d28/optimization/nsga2.py",
+      "destino": ".internal_review/src/d28/optimization/nsga2.py",
+      "sha256": "10d113604353891a989e9ff51f9756fa68daeb5c4f4e7087c35feac4165b1bfa",
+      "status": "COPIADO"
+    },
+    {
+      "origem": "tests/physics/test_r0_milp.py",
+      "destino": ".internal_review/tests/physics/test_r0_milp.py",
+      "sha256": "864c19afdfffd7e522b41c76bfa0d3c70ec7a3dc0239d4b0096460e5580b0c14",
+      "status": "COPIADO"
+    },
+    {
+      "origem": "requirements.txt",
+      "destino": ".internal_review/requirements.txt",
+      "sha256": "889810749b7c9d51fecde7ccf1e06f117baf074bae842aea7104c38697d21f79",
+      "status": "COPIADO"
+    }
+  ],
+  "pendencias": [],
+  "solver_executions": 0,
+  "scientific_release": "BLOCKED"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "PENDING_RESEARCHER_APPROVAL",
+  "year": 2025,
+  "timezone": "America/Sao_Paulo",
+  "model": "REUSE_COMPLETE_SOURCE_DAYS_BY_EXPLICIT_MAP",
+  "interpretation": "SYNTHETIC_COUNTERFACTUAL_NOT_OBSERVED",
+  "load_semantics": "AC_AGGREGATE_CHARGING_PROXY_NO_AUXILIARY_ADDITION",
+  "mapping_evidence_status": "PENDING",
+  "calendar_mapping_rationale": "",
+  "source_day_for_calendar_day": null
+}

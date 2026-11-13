@@ -1,0 +1,30 @@
+{
+  "status": "SOURCE_RECONCILIATION_ONLY",
+  "source_files": {
+    "D28_Logistica_Carregamento_Consolidada (1).xlsx": "46e487a28314fdfe64f3891cd60374681bbb4d0f7c1cb627cdad943374243c9d",
+    "D28_Programacao_Recarga_Consolidada_FINAL (1).xlsx": "1ba4b5105f972ee77dfccc85743d21088f274dc51301880486f1025c36933b21"
+  },
+  "logistica_rows": 115,
+  "programacao_rows": 115,
+  "energia_rows": 115,
+  "joined_rows": 115,
+  "issues": 0,
+  "cycles": 8,
+  "scenarios_requested": [
+    "E100",
+    "E200",
+    "E300",
+    "E375",
+    "E450"
+  ],
+  "annual_intervals_per_scenario_target": 35040,
+  "annual_intervals_generated": 0,
+  "annual_blockers": [
+    "Não há correspondência documentada das 115 sessões aos cinco cenários",
+    "Não há calendário operacional de 365 dias vinculado aos ciclos",
+    "Veículos representativos não equivalem necessariamente a ônibus individuais",
+    "Eficiência 0,94 pertence ao gerador REV09, não está certificada nesta programação"
+  ],
+  "new_solver_executions": 0,
+  "scientific_release": "BLOCKED"
+}

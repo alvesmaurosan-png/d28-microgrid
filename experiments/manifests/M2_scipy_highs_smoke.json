@@ -1,0 +1,39 @@
+{
+  "status": "OPTIMAL_SYNTHETIC",
+  "backend": "scipy.optimize.milp / HiGHS",
+  "is_pyomo": false,
+  "objective_sum_grid_kw": 360.0,
+  "load_kw": [
+    100.0,
+    150.0,
+    120.0,
+    80.0
+  ],
+  "pv_pu": [
+    0.0,
+    0.3,
+    0.5,
+    0.1
+  ],
+  "pv_capacity_kw": 100.0,
+  "grid_kw": [
+    100.0,
+    120.0,
+    70.0,
+    70.0
+  ],
+  "pv_kw": [
+    0.0,
+    30.0,
+    50.0,
+    10.0
+  ],
+  "pcc_cap_kw": 2500.0,
+  "scope": "4 intervals, synthetic aggregated R0 smoke only; not D28 scientific result",
+  "limitations": [
+    "Pyomo and highspy not installed",
+    "B01-B07 remain open",
+    "No BESS/individual bus charging",
+    "No Pareto or F1/F3"
+  ]
+}

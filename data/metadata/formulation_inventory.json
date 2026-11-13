@@ -1,0 +1,68 @@
+{
+  "project": "D28-Electric-Bus-Depot-Microgrid-Optimization",
+  "modules": [
+    {
+      "file": ".internal_review/src/d28/dispatch/milp.py",
+      "exists": true,
+      "lines": 165,
+      "functions": [
+        "build_r0_smoke",
+        "build_r0_milp"
+      ],
+      "classes": [],
+      "syntax": "OK"
+    },
+    {
+      "file": ".internal_review/src/d28/optimization/nsga2.py",
+      "exists": true,
+      "lines": 3,
+      "functions": [
+        "run_scientific_nsga2"
+      ],
+      "classes": [],
+      "syntax": "OK"
+    },
+    {
+      "file": ".internal_review/tests/physics/test_r0_milp.py",
+      "exists": true,
+      "lines": 93,
+      "functions": [
+        "solve",
+        "test_legacy_smoke_preserved",
+        "test_r0_balance_pv_curtailment_and_pcc",
+        "test_bess_physics_and_cyclic_terminal",
+        "test_soh_limits_and_terminal_fixed",
+        "test_pcc_infeasible_without_slack",
+        "test_invalid_parameters"
+      ],
+      "classes": [],
+      "syntax": "OK"
+    }
+  ],
+  "documentation": [
+    {
+      "file": "docs/methodology/source_protocol/PC_REV08_Protocolo_Cientifico_Tecnico_Consolidado.docx",
+      "bytes": 43135
+    },
+    {
+      "file": "docs/methodology/source_protocol/PC_REV08_Protocolo_Cientifico_Tecnico_Consolidado.md",
+      "bytes": 69349
+    },
+    {
+      "file": "docs/methodology/source_specification/D28_Documento_Final_Consolidado_REV03_PC_REV08.md",
+      "bytes": 62609
+    },
+    {
+      "file": "docs/methodology/source_specification/Tutorial_D28_PyCharm_GitHub_PC_REV08_REV01.md",
+      "bytes": 36147
+    }
+  ],
+  "parameters": [
+    {
+      "file": "data/raw/parameters/Base_Mestre_D28_PC_REV07_REV02.xlsx",
+      "bytes": 32914
+    }
+  ],
+  "status": "FORMULATION_INVENTORY_ONLY",
+  "solver_executions": 0
+}

@@ -1,0 +1,250 @@
+﻿"""D28 M3.1: real-2026 BRL economic core; exploratory assumptions only.
+
+No solver invocation and no modification of historical MILP results.
+"""
+from __future__ import annotations
+
+import json
+import math
+from dataclasses import dataclass
+from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Sequence
+
+
+def _nonnegative(name: str, x: float) -> float:
+    x = float(x)
+    if not math.isfinite(x) or x < 0:
+        raise ValueError(f"{name} must be finite and nonnegative")
+    return x
+
+
+@dataclass(frozen=True)
+class Economics:
+    pv_capex_brl_per_kwp: float
+    bess_capex_brl_per_kwh: float
+    pcs_capex_brl_per_kw: float
+    engineering_contingency_fraction: float
+    pv_fixed_opex_fraction_of_pv_capex_year: float
+    bess_fixed_opex_fraction_of_bess_capex_year: float
+    pcs_fixed_opex_fraction_of_pcs_capex_year: float
+    energy_tariff_brl_per_kwh: float
+    demand_tariff_brl_per_kw_month: float
+    discount_rate_real_year: float
+    horizon_years: int
+    pv_inverter_replacement_year: int
+    pv_inverter_replacement_fraction_of_initial_pv_capex: float
+    bess_replacement_year: int
+    bess_replacement_fraction_of_initial_bess_capex: float
+    pv_capacity_max_kwp: float
+    bess_max_c_rate_per_hour: float
+    pcc_import_limit_kw: float
+    annual_pkm: float | None = None
+
+    @classmethod
+    def from_json(cls, path: str | Path) -> "Economics":
+        raw = json.loads(Path(path).read_text(encoding="utf-8-sig"))
+        return cls(**{name: raw[name] for name in cls.__dataclass_fields__})
+
+    def __post_init__(self):
+        for name in self.__dataclass_fields__:
+            val = getattr(self, name)
+            if name == "annual_pkm" and val is None:
+                continue
+            _nonnegative(name, val)
+        if not isinstance(self.horizon_years, int) or self.horizon_years < 1:
+            raise ValueError("horizon_years must be a positive integer")
+        if self.discount_rate_real_year <= -1:
+            raise ValueError("invalid discount rate")
+        for name in ("pv_inverter_replacement_year", "bess_replacement_year"):
+            if not isinstance(getattr(self, name), int):
+                raise ValueError(f"{name} must be integer")
+        if self.annual_pkm is not None and self.annual_pkm <= 0:
+            raise ValueError("annual_pkm must be positive")
+
+
+def validate_design(cfg: Economics, pv_kwp: float, bess_kwh: float, pcs_kw: float) -> None:
+    pv_kwp = _nonnegative("pv_kwp", pv_kwp)
+    bess_kwh = _nonnegative("bess_kwh", bess_kwh)
+    pcs_kw = _nonnegative("pcs_kw", pcs_kw)
+    if pv_kwp > cfg.pv_capacity_max_kwp + 1e-8:
+        raise ValueError("PV exceeds reference roof limit")
+    if pcs_kw > cfg.bess_max_c_rate_per_hour * bess_kwh + 1e-8:
+        raise ValueError("PCS exceeds BESS C-rate")
+
+
+def capital_and_fixed_opex(cfg: Economics, pv_kwp: float, bess_kwh: float, pcs_kw: float) -> dict:
+    validate_design(cfg, pv_kwp, bess_kwh, pcs_kw)
+    pv = pv_kwp * cfg.pv_capex_brl_per_kwp
+    bess = bess_kwh * cfg.bess_capex_brl_per_kwh
+    pcs = pcs_kw * cfg.pcs_capex_brl_per_kw
+    direct = pv + bess + pcs
+    fixed = (pv * cfg.pv_fixed_opex_fraction_of_pv_capex_year
+             + bess * cfg.bess_fixed_opex_fraction_of_bess_capex_year
+             + pcs * cfg.pcs_fixed_opex_fraction_of_pcs_capex_year)
+    return {"pv_capex_brl": pv, "bess_capex_brl": bess, "pcs_capex_brl": pcs,
+            "direct_capex_brl": direct,
+            "initial_capex_brl": direct * (1 + cfg.engineering_contingency_fraction),
+            "annual_fixed_opex_brl": fixed}
+
+
+def month_groups(start: datetime, n: int, dt_hours: float) -> list[int]:
+    """Exact calendar grouping, only for regular sampling with a known timestamp."""
+    if n < 1 or dt_hours <= 0 or not math.isfinite(dt_hours):
+        raise ValueError("invalid time axis")
+    if start.tzinfo is not None:
+        raise ValueError("use naive local timestamps; DST handling must be explicit")
+    return [(start + timedelta(hours=t * dt_hours)).year * 100
+            + (start + timedelta(hours=t * dt_hours)).month for t in range(n)]
+
+
+def annual_bill(cfg: Economics, grid_kw: Sequence[float], dt_hours: float,
+                months: Sequence[int]) -> dict:
+    """Tariff model: 15-min energy and *actual monthly maxima*, not 12 x annual peak."""
+    if not grid_kw or len(grid_kw) != len(months):
+        raise ValueError("grid and months must be nonempty, equal-length")
+    dt = _nonnegative("dt_hours", dt_hours)
+    if dt <= 0:
+        raise ValueError("dt_hours must be positive")
+    peak_by_month: dict[int, float] = {}
+    energy = 0.0
+    for g, month in zip(grid_kw, months):
+        g = _nonnegative("grid_kw", g)
+        if g > cfg.pcc_import_limit_kw + 1e-6:
+            raise ValueError("PCC limit exceeded")
+        if not isinstance(month, int) or month % 100 not in range(1, 13):
+            raise ValueError("invalid YYYYMM month")
+        energy += g * dt
+        peak_by_month[month] = max(peak_by_month.get(month, 0.0), g)
+    energy_cost = energy * cfg.energy_tariff_brl_per_kwh
+    demand_cost = sum(peak_by_month.values()) * cfg.demand_tariff_brl_per_kw_month
+    return {"energy_kwh": energy, "energy_cost_brl": energy_cost,
+            "monthly_peak_kw": peak_by_month, "demand_cost_brl": demand_cost,
+            "total_variable_bill_brl": energy_cost + demand_cost}
+
+
+def present_value(cfg: Economics, pv_kwp: float, bess_kwh: float, pcs_kw: float,
+                  annual_variable_bill_brl: float | None = None,
+                  annual_pkm: float | None = None) -> dict:
+    """Stationary annual tariff and PKM scenario; no ungrounded numerical completion."""
+    cap = capital_and_fixed_opex(cfg, pv_kwp, bess_kwh, pcs_kw)
+    variable = None if annual_variable_bill_brl is None else _nonnegative(
+        "annual_variable_bill_brl", annual_variable_bill_brl)
+    annual = cap["annual_fixed_opex_brl"] + (variable or 0.0)
+    annuity = sum((1 + cfg.discount_rate_real_year) ** (-year)
+                  for year in range(1, cfg.horizon_years + 1))
+    replacements = (
+        cap["pv_capex_brl"] * cfg.pv_inverter_replacement_fraction_of_initial_pv_capex
+        / (1 + cfg.discount_rate_real_year) ** cfg.pv_inverter_replacement_year
+        if 1 <= cfg.pv_inverter_replacement_year <= cfg.horizon_years else 0.0
+    ) + (
+        cap["bess_capex_brl"] * cfg.bess_replacement_fraction_of_initial_bess_capex
+        / (1 + cfg.discount_rate_real_year) ** cfg.bess_replacement_year
+        if 1 <= cfg.bess_replacement_year <= cfg.horizon_years else 0.0
+    )
+    result = {**cap, "annuity_factor": annuity,
+              "replacement_present_value_brl": replacements,
+              "pv_cost_without_variable_bill_brl": cap["initial_capex_brl"]
+                  + cap["annual_fixed_opex_brl"] * annuity + replacements,
+              "pv_total_cost_brl": None, "pv_pkm": None, "f1_brl_per_pkm": None}
+    if variable is not None:
+        result["pv_total_cost_brl"] = cap["initial_capex_brl"] + annual * annuity + replacements
+    pkm = cfg.annual_pkm if annual_pkm is None else annual_pkm
+    if pkm is not None:
+        pkm = _nonnegative("annual_pkm", pkm)
+        if pkm == 0:
+            raise ValueError("annual_pkm must be positive")
+        result["pv_pkm"] = pkm * annuity
+        if result["pv_total_cost_brl"] is not None:
+            result["f1_brl_per_pkm"] = result["pv_total_cost_brl"] / result["pv_pkm"]
+    return result
+
+
+@dataclass(frozen=True)
+class TariffPolicy:
+    """Explicit scenario tariff assumptions; never inferred from Base Mestre.
+
+    energy_tariffs_brl_per_kwh: one rate per dispatch interval (not per month).
+    contracted_demand_kw_by_month: YYYYMM -> contracted kW for all 12 months.
+    Demand bill = rate * max(measured monthly peak, contracted demand).
+    Overrun bill = rate * max(measured peak - threshold*contract, 0).
+    Tax is an explicit additive percentage of the pre-tax variable bill.
+    These are modeling conventions, not a claim of regulatory conformity.
+    """
+    energy_tariffs_brl_per_kwh: tuple[float, ...]
+    contracted_demand_kw_by_month: dict[int, float]
+    demand_tariff_brl_per_kw_month: float
+    overrun_threshold_multiplier: float
+    overrun_tariff_brl_per_kw_month: float
+    additional_energy_charge_brl_per_kwh: float = 0.0
+    monthly_fixed_charge_brl: float = 0.0
+    tax_fraction_on_bill: float = 0.0
+
+    def __post_init__(self):
+        if not self.energy_tariffs_brl_per_kwh:
+            raise ValueError('EMPTY_INTERVAL_TARIFFS')
+        for x in self.energy_tariffs_brl_per_kwh:
+            _nonnegative('interval_tariff', x)
+        for name in ('demand_tariff_brl_per_kw_month',
+                     'overrun_tariff_brl_per_kw_month',
+                     'additional_energy_charge_brl_per_kwh',
+                     'monthly_fixed_charge_brl', 'tax_fraction_on_bill'):
+            _nonnegative(name, getattr(self, name))
+        if not math.isfinite(float(self.overrun_threshold_multiplier)) or self.overrun_threshold_multiplier < 1:
+            raise ValueError('INVALID_OVERRUN_THRESHOLD')
+        if not self.contracted_demand_kw_by_month:
+            raise ValueError('MISSING_CONTRACTED_DEMAND')
+        for month, value in self.contracted_demand_kw_by_month.items():
+            if not isinstance(month, int) or month % 100 not in range(1, 13):
+                raise ValueError('INVALID_CONTRACT_MONTH')
+            _nonnegative('contracted_demand_kw', value)
+
+
+def validate_tariff_calendar(policy: TariffPolicy, months: Sequence[int], n: int) -> list[int]:
+    if len(months) != n or len(policy.energy_tariffs_brl_per_kwh) != n:
+        raise ValueError('TARIFF_SERIES_LENGTH_MISMATCH')
+    keys = sorted(set(months))
+    if len(keys) != 12 or len({m // 100 for m in keys}) != 1 or set(keys) != set(policy.contracted_demand_kw_by_month):
+        raise ValueError('TARIFF_CALENDAR_MUST_MATCH_12_MONTHS')
+    return keys
+
+
+def annual_bill_regulated(cfg: Economics, grid_kw: Sequence[float], dt_hours: float,
+                          months: Sequence[int], policy: TariffPolicy) -> dict:
+    """Ex-post bill from the same PCC dispatch and explicit tariff contract."""
+    if len(grid_kw) == 0:
+        raise ValueError('EMPTY_DISPATCH')
+    keys = validate_tariff_calendar(policy, months, len(grid_kw))
+    dt = _nonnegative('dt_hours', dt_hours)
+    if dt <= 0:
+        raise ValueError('INVALID_DT')
+    peaks = {m: 0.0 for m in keys}
+    energy_kwh = 0.0
+    energy_cost = 0.0
+    additional_energy_cost = 0.0
+    for g, m, rate in zip(grid_kw, months, policy.energy_tariffs_brl_per_kwh):
+        g = _nonnegative('grid_kw', g)
+        if g > cfg.pcc_import_limit_kw + 1e-6:
+            raise ValueError('PCC_LIMIT_EXCEEDED')
+        peaks[m] = max(peaks[m], g)
+        energy_kwh += g * dt
+        energy_cost += g * dt * rate
+        additional_energy_cost += g * dt * policy.additional_energy_charge_brl_per_kwh
+    demand_cost = sum(policy.demand_tariff_brl_per_kw_month * max(peaks[m], policy.contracted_demand_kw_by_month[m]) for m in keys)
+    overrun_cost = sum(policy.overrun_tariff_brl_per_kw_month * max(peaks[m] - policy.overrun_threshold_multiplier * policy.contracted_demand_kw_by_month[m], 0.0) for m in keys)
+    fixed_cost = len(keys) * policy.monthly_fixed_charge_brl
+    subtotal = energy_cost + additional_energy_cost + demand_cost + overrun_cost + fixed_cost
+    tax_cost = subtotal * policy.tax_fraction_on_bill
+    return {
+        'energy_kwh': energy_kwh,
+        'energy_cost_brl': energy_cost,
+        'additional_energy_charge_brl': additional_energy_cost,
+        'demand_cost_brl': demand_cost,
+        'overrun_cost_brl': overrun_cost,
+        'monthly_fixed_cost_brl': fixed_cost,
+        'tax_cost_brl': tax_cost,
+        'monthly_peak_kw': peaks,
+        'total_variable_bill_brl': subtotal + tax_cost,
+        'scope': 'EXPLICIT_SCENARIO_TARIFF_NOT_REGULATORY_HOMOLOGATION',
+    }
+

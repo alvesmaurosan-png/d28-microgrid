@@ -1,0 +1,61 @@
+{
+  "status": "PASS_WITH_BLOCKERS",
+  "errors": [],
+  "warnings": [
+    "solar_local_hour repete por 15 min; não equivale a timestamp civil individual de cada intervalo (B01)",
+    "B01–B07 não encerrados: resultados científicos bloqueados"
+  ],
+  "parameter_count": 137,
+  "solar_rows": 6720,
+  "demand_by_scenario": {
+    "E100": 6720,
+    "E200": 6720,
+    "E300": 6720,
+    "E375": 6720,
+    "E450": 6720
+  },
+  "blockers": [
+    {
+      "bloqueio": "B01",
+      "estado": "ABERTO",
+      "condicao": "Calendário civil não conciliado; alinhamento por índice é provisório"
+    },
+    {
+      "bloqueio": "B02",
+      "estado": "ABERTO",
+      "condicao": "Ausência de SOC e janelas individuais; demanda agregada não prova factibilidade individual"
+    },
+    {
+      "bloqueio": "B03",
+      "estado": "ABERTO",
+      "condicao": "D05-003 e D05-004 mantidos sem substituição"
+    },
+    {
+      "bloqueio": "B04",
+      "estado": "ABERTO",
+      "condicao": "D11-013 e D11-017 condicionados; F3 ACV incompleta"
+    },
+    {
+      "bloqueio": "B05",
+      "estado": "PARCIAL",
+      "condicao": "Parâmetros mapeados; validação das restrições pendente"
+    },
+    {
+      "bloqueio": "B06",
+      "estado": "PARCIAL",
+      "condicao": "Cinco cenários reconciliados; PKM e anualização não homologados"
+    },
+    {
+      "bloqueio": "B07",
+      "estado": "NAO_EXECUTADO",
+      "condicao": "Ingestão NSGA-II + MILP ainda não testada"
+    }
+  ],
+  "raw_sha256": {
+    "data/raw/demanda/D28_REV09_demanda_15min.csv": "1f99c20a9b2892b3d5d652dea2affe2926a1eee0a0187f43423a2f1b8ca3015e",
+    "data/raw/parametros/Base_Mestre_D28_PC_REV07_REV02.xlsx": "425248ab5436cf4c9891556fdb614d6326b8a5c06ec8aedec1b97fc402692336",
+    "data/raw/solar/D28_solar_15min_REV12_1_3.csv": "3bf1eccaf1482f4589b03e3d931b12e5c572125992a61ecaf301d88f71725083",
+    "data/raw/solar/D28_solar_8760_modelo.csv": "e213c4e12f975b1aa0b061193d1faf8f36517f45f3c15df6a9e787ab25f21ae9"
+  },
+  "scientific_release_allowed": false
+}

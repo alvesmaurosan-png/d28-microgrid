@@ -1,0 +1,102 @@
+"""Ponte executável R0–R3. Não modifica F1, F3, nem desbloqueia M6.
+
+Dois modos: despacho físico diagnóstico e avaliação científica condicionada.
+Os callbacks de contabilidade devem implementar os contratos já aprovados;
+este módulo nunca supõe tarifas, PKM, fatores de emissão ou anualização.
+"""
+from __future__ import annotations
+import json
+from pathlib import Path
+from typing import Callable
+from d28.optimization.architecture_evaluator import Evaluation, evaluate_architecture
+
+ROUTES = ('R0', 'R1', 'R2', 'R3')
+
+
+def build_architecture(route: str, *, common: dict, chp: dict | None = None,
+                       biogas: dict | None = None, cgob: dict | None = None):
+    """Cria o MILP usando os construtores originais e argumentos explícitos."""
+    if route not in ROUTES:
+        raise ValueError(f'Arquitetura desconhecida: {route}')
+    if not isinstance(common, dict):
+        raise ValueError('common deve ser um dicionário')
+    if route == 'R0':
+        from d28.dispatch.milp import build_r0_milp
+        return build_r0_milp(**common)
+    if not isinstance(chp, dict):
+        raise ValueError(f'{route}: parâmetros CHP obrigatórios')
+    if route == 'R1':
+        from d28.dispatch.r1 import build_r1_milp
+        return build_r1_milp(**common, **chp)
+    if route == 'R2':
+        if not isinstance(biogas, dict):
+            raise ValueError('R2: parâmetros de produção/armazenamento de biogás obrigatórios')
+        from d28.dispatch.r2_r3 import build_r2_milp
+        return build_r2_milp(**common, **chp, **biogas)
+    if not isinstance(cgob, dict) or 'cgob_coverage_nm3' not in cgob:
+        raise ValueError('R3: cobertura CGOB explícita obrigatória')
+    from d28.dispatch.r2_r3 import build_r3_milp
+    return build_r3_milp(**common, **chp, **cgob)
+
+
+def solve_highs(model, solver_name='appsi_highs') -> dict:
+    """Resolve o despacho com objetivo interno existente; não afirma otimalidade multiobjetivo."""
+    import pyomo.environ as p
+    solver = p.SolverFactory(solver_name)
+    if not solver.available(exception_flag=False):
+        return {'optimal': False, 'solver': solver_name, 'termination': 'unavailable'}
+    result = solver.solve(model, load_solutions=False)
+    termination = result.solver.termination_condition
+    optimal = termination == p.TerminationCondition.optimal
+    if optimal:
+        model.solutions.load_from(result)
+    return {'optimal': optimal, 'solver': solver_name, 'termination': str(termination),
+            'internal_objective': 'existing_model_objective_not_triobjective'}
+
+
+def annual_contract_ready(contract: dict) -> tuple[bool, str]:
+    """Fail-closed: exige aprovação explícita e mapa de todos os dias do ano."""
+    from datetime import date, timedelta
+    if not isinstance(contract, dict) or contract.get('status') != 'APPROVED':
+        return False, 'Contrato anual não aprovado'
+    if contract.get('mapping_evidence_status') != 'APPROVED':
+        return False, 'Evidência do mapeamento anual não aprovada'
+    mapping = contract.get('source_day_for_calendar_day')
+    if not isinstance(mapping, dict):
+        return False, 'Mapa calendário-dia-fonte ausente'
+    try:
+        year = int(contract['year'])
+        start, end = date(year, 1, 1), date(year + 1, 1, 1)
+        required = {(start + timedelta(days=i)).isoformat() for i in range((end-start).days)}
+    except (ValueError, KeyError, TypeError):
+        return False, 'Ano inválido no contrato'
+    if set(mapping) != required or any(not isinstance(v, str) or not v.strip() for v in mapping.values()):
+        return False, 'Mapa anual incompleto ou inválido'
+    if not str(contract.get('calendar_mapping_rationale', '')).strip():
+        return False, 'Justificativa do mapeamento ausente'
+    return True, ''
+
+
+def evaluate_route(route: str, *, common: dict, contract: dict | str | Path,
+                   compute_f1: Callable | None = None, compute_f3: Callable | None = None,
+                   annual_pkm: float | None = None, life_years: int | None = None,
+                   chp: dict | None = None, biogas: dict | None = None,
+                   cgob: dict | None = None, solver_name='appsi_highs') -> Evaluation:
+    """Integra construtor, despacho, F1/F2/F3. Sem contrato aprovado não gera objetivos."""
+    if isinstance(contract, (str, Path)):
+        contract = json.loads(Path(contract).read_text(encoding='utf-8-sig'))
+    ready, reason = annual_contract_ready(contract)
+    if not ready:
+        return Evaluation(False, None, reason, {'route': route, 'gate': 'ANNUAL_CONTRACT_BLOCKED'})
+    if not callable(compute_f1) or not callable(compute_f3):
+        return Evaluation(False, None, 'Contabilidade F1/F3 não conectada', {'route': route})
+    if annual_pkm is None or life_years is None:
+        return Evaluation(False, None, 'PKM/horizonte ausentes', {'route': route})
+    try:
+        model = build_architecture(route, common=common, chp=chp, biogas=biogas, cgob=cgob)
+        return evaluate_architecture(route, model,
+            solve=lambda m: solve_highs(m, solver_name),
+            compute_f1=compute_f1, compute_f3=compute_f3,
+            annual_pkm=annual_pkm, life_years=life_years)
+    except (ValueError, TypeError, RuntimeError) as exc:
+        return Evaluation(False, None, str(exc), {'route': route, 'gate': 'BUILD_OR_SOLVE_FAILED'})

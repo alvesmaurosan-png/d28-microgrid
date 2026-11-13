@@ -1,0 +1,82 @@
+{
+  "gate": "M2",
+  "scope": "synthetic_R0_four_15min_intervals",
+  "scientific_validation": false,
+  "python": "3.11.9",
+  "input": {
+    "load_kw": [
+      100.0,
+      150.0,
+      120.0,
+      80.0
+    ],
+    "pv_pu": [
+      0.0,
+      0.3,
+      0.5,
+      0.1
+    ],
+    "pv_capacity_kw": 100.0,
+    "pcc_cap_kw": 2500.0,
+    "delta_t_h": 0.25
+  },
+  "tolerance_numerical_smoke": 1e-06,
+  "scipy": {
+    "grid_kw": [
+      100.0,
+      120.0,
+      70.0,
+      70.0
+    ],
+    "pv_kw": [
+      0.0,
+      30.0,
+      50.0,
+      10.0
+    ],
+    "objective_sum_grid_kw": 360.0,
+    "checks": {
+      "max_balance_residual_kw": 0.0,
+      "max_pv_violation_kw": 0.0,
+      "max_pcc_violation_kw": 0.0,
+      "min_grid_kw": 70.0,
+      "min_pv_kw": 0.0,
+      "grid_energy_kwh": 90.0
+    }
+  },
+  "pyomo": {
+    "grid_kw": [
+      100.0,
+      120.0,
+      70.0,
+      70.0
+    ],
+    "pv_kw": [
+      -0.0,
+      30.0,
+      50.0,
+      10.0
+    ],
+    "objective_sum_grid_kw": 360.0,
+    "termination": "optimal",
+    "versions": {
+      "pyomo": "6.10.1",
+      "highspy": "unknown"
+    },
+    "checks": {
+      "max_balance_residual_kw": 0.0,
+      "max_pv_violation_kw": 0.0,
+      "max_pcc_violation_kw": 0.0,
+      "min_grid_kw": 70.0,
+      "min_pv_kw": -0.0,
+      "grid_energy_kwh": 90.0
+    }
+  },
+  "comparison": {
+    "max_abs_grid_diff_kw": 0.0,
+    "max_abs_pv_diff_kw": 0.0,
+    "abs_objective_diff": 0.0
+  },
+  "passed": true,
+  "status": "PASS"
+}

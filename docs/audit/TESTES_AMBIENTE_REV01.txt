@@ -1,0 +1,38 @@
+
+==================================== ERRORS ====================================
+_________________ ERROR collecting tests/dispatch/test_chp.py __________________
+ImportError while importing test module '/mnt/data/D28_REPOSITORIO_CANDIDATO_REV01/tests/dispatch/test_chp.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/dispatch/test_chp.py:4: in <module>
+    import pyomo.environ as p
+E   ModuleNotFoundError: No module named 'pyomo'
+_________ ERROR collecting tests/dispatch/test_chp_fuel_integration.py _________
+ImportError while importing test module '/mnt/data/D28_REPOSITORIO_CANDIDATO_REV01/tests/dispatch/test_chp_fuel_integration.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/dispatch/test_chp_fuel_integration.py:4: in <module>
+    import pyomo.environ as p
+E   ModuleNotFoundError: No module named 'pyomo'
+__________________ ERROR collecting tests/dispatch/test_r1.py __________________
+ImportError while importing test module '/mnt/data/D28_REPOSITORIO_CANDIDATO_REV01/tests/dispatch/test_r1.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/dispatch/test_r1.py:4: in <module>
+    import pyomo.environ as p
+E   ModuleNotFoundError: No module named 'pyomo'
+=========================== short test summary info ============================
+ERROR tests/dispatch/test_chp.py
+ERROR tests/dispatch/test_chp_fuel_integration.py
+ERROR tests/dispatch/test_r1.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 3 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 skipped, 3 errors in 0.30s

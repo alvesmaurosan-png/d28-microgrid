@@ -1,0 +1,5 @@
+﻿"Algorithm","Hash","Path"
+"SHA256","2F01A4ED51AE92688296F802095988DD0EB739F6CD938821DA5DA4D82E5F6D44","C:\Users\SN72755\PycharmProjects\D28-Electric-Bus-Depot-Microgrid-Optimization\data\processed\milp_inputs\R0_inputs_E100_15min.csv"
+"SHA256","C07C65E60316056EB2BD2A512F05E44997F544E0D3A1E8A68B60E7C5D9827F49","C:\Users\SN72755\PycharmProjects\D28-Electric-Bus-Depot-Microgrid-Optimization\config\economics\r0_f1_exploratory_2026.json"
+"SHA256","BFD54D94803FC5C1756805E443588A3413D8BFB73D78BDDB48A7C7F1919D67B6","C:\Users\SN72755\PycharmProjects\D28-Electric-Bus-Depot-Microgrid-Optimization\results\r0_e100_consolidacao_rev03\pareto_exato.csv"
+"SHA256","AC82D7E1773FF6ED1573CC096CD7753ED2556E723E2D37E3D6EED05B4D3A9200","C:\Users\SN72755\PycharmProjects\D28-Electric-Bus-Depot-Microgrid-Optimization\results\r0_e100_f1_consolidada_rev04\pareto_f1_consolidada.csv"

@@ -1,0 +1,106 @@
+{
+  "research_type": "multiobjective_optimization",
+  "design": "NSGA-II_outer_MILP_inner",
+  "time_step_minutes": 15,
+  "solar_reference": {
+    "file": "data/raw/solar/D28_solar_8760_modelo.csv",
+    "annual_hours": 8760,
+    "source": "INMET_derived_series",
+    "temporal_conversion": "explicit_and_documented",
+    "status": "SOURCE_LOCATED"
+  },
+  "architectures": {
+    "R0": [
+      "grid",
+      "PV",
+      "BESS",
+      "charging"
+    ],
+    "R1": [
+      "grid",
+      "PV",
+      "BESS",
+      "charging",
+      "natural_gas_CHP"
+    ],
+    "R2": [
+      "grid",
+      "PV",
+      "BESS",
+      "charging",
+      "biogas_CHP"
+    ],
+    "R3": [
+      "grid",
+      "PV",
+      "BESS",
+      "charging",
+      "natural_gas_CHP",
+      "CGOB"
+    ]
+  },
+  "scenarios": {
+    "E100": {
+      "bev": 100,
+      "reference_year": 2026
+    },
+    "E200": {
+      "bev": 200,
+      "reference_year": 2026
+    },
+    "E300": {
+      "bev": 300,
+      "reference_year": 2026
+    },
+    "E375": {
+      "bev": 375,
+      "reference_year": 2038
+    },
+    "E450": {
+      "bev": 450,
+      "reference_year": 2050
+    }
+  },
+  "objectives": {
+    "F1": {
+      "minimize": true,
+      "unit": "BRL2026/PKM",
+      "definition": "present_value_system_cost / present_value_PKM"
+    },
+    "F2": {
+      "minimize": true,
+      "unit": "kW",
+      "definition": "max_grid_import"
+    },
+    "F3": {
+      "minimize": true,
+      "unit": "kgCO2e/PKM",
+      "definition": "life_cycle_emissions / PKM"
+    }
+  },
+  "complementary_indicators": [
+    "grid_import_energy",
+    "grid_energy_share",
+    "PCC_utilization",
+    "exergy_destruction",
+    "exergy_losses"
+  ],
+  "inner_dispatch": {
+    "method": "MILP",
+    "solver": "HiGHS",
+    "objective_policy": "TO_BE_IMPLEMENTED_AND_FIXED",
+    "no_unserved_load_as_feasible_solution": true
+  },
+  "outer_optimization": {
+    "method": "NSGA-II",
+    "mixed_variable_encoding": "REQUIRED",
+    "seed": "REQUIRED",
+    "population": "REQUIRED",
+    "generations": "REQUIRED"
+  },
+  "environmental_accounting": {
+    "boundary": "life_cycle",
+    "missing_factors_must_not_be_zero": true
+  },
+  "scientific_results_status": "NOT_YET_EXECUTED"
+}

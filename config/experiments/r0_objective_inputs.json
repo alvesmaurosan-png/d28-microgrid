@@ -1,0 +1,20 @@
+{
+  "economic": {
+    "pv_capex_brl_per_kwp": null,
+    "bess_capex_brl_per_kwh": null,
+    "pcs_capex_brl_per_kw": null,
+    "annual_fixed_opex_fraction": null,
+    "energy_tariff_brl_per_kwh": null,
+    "annual_pkm": 137675700,
+    "discount_rate": 0.12,
+    "economic_horizon_years": 20
+  },
+  "lca": {
+    "pv_kgco2e_per_kwp": null,
+    "bess_kgco2e_per_kwh": null,
+    "pcs_kgco2e_per_kw": null,
+    "grid_kgco2e_per_kwh": null,
+    "replacement_kgco2e_total": null,
+    "end_of_life_kgco2e_total": null
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "execution_class": "SYNTHETIC_DEMONSTRATION",
+  "inputs_homologated": false,
+  "architecture": "R0",
+  "physical": {
+    "load_kw": [
+      8.0,
+      12.0,
+      9.0,
+      11.0
+    ],
+    "pv_pu": [
+      0.0,
+      0.5,
+      0.8,
+      0.0
+    ],
+    "months": [
+      202601,
+      202601,
+      202601,
+      202601
+    ],
+    "dt_hours": 1.0
+  },
+  "contract": {
+    "scenario": "Realista",
+    "discount_rate": 0.12,
+    "horizon_years": 2,
+    "pcc_cap_kw": 20.0,
+    "economics_source": "HIPOTESE_SINTETICA_REV02"
+  },
+  "tariff": {
+    "energy_tariff_brl_kwh": 0.75,
+    "demand_tariff_brl_kw_month": 30.0,
+    "source": "HIPOTESE_TARIFA_PLANA_NAO_HOMOLOGADA"
+  },
+  "economic_inputs": {
+    "initial_costs_excluding_grid": {
+      "frota_capex": 10000.0,
+      "frota_opex": 0.0,
+      "frota_reposicao": 0.0,
+      "infra_eletrica_capex": 2000.0,
+      "infra_eletrica_opex": 0.0,
+      "infra_eletrica_reposicao": 0.0,
+      "infra_gas_capex": 0.0,
+      "infra_gas_opex": 0.0,
+      "infra_gas_reposicao": 0.0,
+      "reforco_rede_capex": 0.0,
+      "reforco_rede_opex": 0.0,
+      "combustivel_diesel": 0.0,
+      "arla": 0.0,
+      "combustivel_gas": 0.0,
+      "residual_frota": 0.0,
+      "residual_infra_eletrica": 0.0,
+      "residual_infra_gas": 0.0
+    },
+    "annual_costs_excluding_grid": {
+      "frota_capex": 0.0,
+      "frota_opex": 500.0,
+      "frota_reposicao": 0.0,
+      "infra_eletrica_capex": 0.0,
+      "infra_eletrica_opex": 100.0,
+      "infra_eletrica_reposicao": 0.0,
+      "infra_gas_capex": 0.0,
+      "infra_gas_opex": 0.0,
+      "infra_gas_reposicao": 0.0,
+      "reforco_rede_capex": 0.0,
+      "reforco_rede_opex": 0.0,
+      "combustivel_diesel": 0.0,
+      "arla": 0.0,
+      "combustivel_gas": 0.0,
+      "residual_frota": 0.0,
+      "residual_infra_eletrica": 0.0,
+      "residual_infra_gas": 0.0
+    },
+    "annual_pkm_verified": 100000.0,
+    "provenance": "HIPOTESE_SINTETICA_EXPLICITA",
+    "service_source": "SERVICO_SINTETICO_INDEPENDENTE",
+    "variable_capex_brl_per_unit": {
+      "pv_brl_per_kwp": 120.0,
+      "bess_brl_per_kwh": 80.0,
+      "pcs_brl_per_kw": 40.0
+    },
+    "variable_capex_source": "HIPOTESE_DIDATICA_CAPEX_VARIAVEL_NAO_HOMOLOGADA"
+  },
+  "bounds": {
+    "pv_kwp": [
+      0,
+      20.0
+    ],
+    "bess_kwh": [
+      0,
+      40.0
+    ],
+    "pcs_kw": [
+      0,
+      20.0
+    ]
+  },
+  "design": {
+    "variables": [
+      "pv_kwp",
+      "bess_kwh",
+      "pcs_kw"
+    ]
+  },
+  "nsga2": {
+    "population": 40,
+    "generations": 20,
+    "seed": 42
+  }
+}

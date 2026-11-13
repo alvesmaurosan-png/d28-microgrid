@@ -1,0 +1,16 @@
+{
+  "experiment_id": "PENDENTE_APROVACAO",
+  "architecture_id": "R0",
+  "scenario_id": "E100",
+  "scenario_reference_year": 2026,
+  "synthetic_calendar_year": 2025,
+  "temporal_scope_id": "ANUAL_2025_15MIN_SYNTHETIC",
+  "n_intervals": 35040,
+  "dt_hours": 0.25,
+  "pcc_cap_kw": 2500,
+  "load_column": "power_ac_kw",
+  "solar_aligned_file": null,
+  "internal_milp_objective": null,
+  "terminal_policy": null,
+  "approval_status": "BLOCKED"
+}

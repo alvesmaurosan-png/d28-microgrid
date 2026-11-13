@@ -1,0 +1,10 @@
+numpy
+pandas
+openpyxl
+PyYAML
+pyomo
+highspy
+pymoo
+matplotlib
+pytest
+scipy

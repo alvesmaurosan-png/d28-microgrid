@@ -1,0 +1,44 @@
+{
+  "classification": "SYNTHETIC_EXPLORATORY_NOT_HOMOLOGATED",
+  "description": "Valores hipotéticos de comparação, não tarifa Enel nem contrato D28. Ponta 18-21 apenas dias úteis, feriados não excluídos.",
+  "scenarios": [
+    {
+      "id": "FLAT_075_D2500",
+      "model": "flat",
+      "offpeak_brl_kwh": 0.75,
+      "peak_brl_kwh": 0.75,
+      "contracted_demand_kw": 2500,
+      "demand_rate_brl_kw_month": 30
+    },
+    {
+      "id": "TOU_015_200_D2500",
+      "model": "synthetic_weekday_tou",
+      "offpeak_brl_kwh": 0.15,
+      "peak_brl_kwh": 2.0,
+      "peak_start_hour": 18,
+      "peak_end_hour": 21,
+      "contracted_demand_kw": 2500,
+      "demand_rate_brl_kw_month": 30
+    },
+    {
+      "id": "TOU_015_200_D2000",
+      "model": "synthetic_weekday_tou",
+      "offpeak_brl_kwh": 0.15,
+      "peak_brl_kwh": 2.0,
+      "peak_start_hour": 18,
+      "peak_end_hour": 21,
+      "contracted_demand_kw": 2000,
+      "demand_rate_brl_kw_month": 30
+    },
+    {
+      "id": "TOU_015_200_D3000",
+      "model": "synthetic_weekday_tou",
+      "offpeak_brl_kwh": 0.15,
+      "peak_brl_kwh": 2.0,
+      "peak_start_hour": 18,
+      "peak_end_hour": 21,
+      "contracted_demand_kw": 3000,
+      "demand_rate_brl_kw_month": 30
+    }
+  ]
+}

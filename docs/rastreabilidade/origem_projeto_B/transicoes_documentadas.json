@@ -1,0 +1,462 @@
+{
+  "B0_00001": {
+    "successor_block_id": "B0_00008",
+    "successor_day_shift": 2
+  },
+  "B0_00008": {
+    "successor_block_id": "B0_00074",
+    "successor_day_shift": 1
+  },
+  "B0_00074": {
+    "successor_block_id": "B0_00110",
+    "successor_day_shift": 1
+  },
+  "B0_00110": {
+    "successor_block_id": "B0_00093",
+    "successor_day_shift": 1
+  },
+  "B0_00093": {
+    "successor_block_id": "B0_00098",
+    "successor_day_shift": 1
+  },
+  "B0_00098": {
+    "successor_block_id": "B0_00085",
+    "successor_day_shift": 1
+  },
+  "B0_00085": {
+    "successor_block_id": "B0_00001",
+    "successor_day_shift": 1
+  },
+  "B0_00002": {
+    "successor_block_id": "B0_00097",
+    "successor_day_shift": 1
+  },
+  "B0_00097": {
+    "successor_block_id": "B0_00032",
+    "successor_day_shift": 1
+  },
+  "B0_00032": {
+    "successor_block_id": "B0_00096",
+    "successor_day_shift": 1
+  },
+  "B0_00096": {
+    "successor_block_id": "B0_00046",
+    "successor_day_shift": 1
+  },
+  "B0_00046": {
+    "successor_block_id": "B0_00084",
+    "successor_day_shift": 1
+  },
+  "B0_00084": {
+    "successor_block_id": "B0_00099",
+    "successor_day_shift": 1
+  },
+  "B0_00099": {
+    "successor_block_id": "B0_00061",
+    "successor_day_shift": 1
+  },
+  "B0_00061": {
+    "successor_block_id": "B0_00111",
+    "successor_day_shift": 1
+  },
+  "B0_00111": {
+    "successor_block_id": "B0_00073",
+    "successor_day_shift": 1
+  },
+  "B0_00073": {
+    "successor_block_id": "B0_00048",
+    "successor_day_shift": 1
+  },
+  "B0_00048": {
+    "successor_block_id": "B0_00017",
+    "successor_day_shift": 1
+  },
+  "B0_00017": {
+    "successor_block_id": "B0_00071",
+    "successor_day_shift": 1
+  },
+  "B0_00071": {
+    "successor_block_id": "B0_00049",
+    "successor_day_shift": 1
+  },
+  "B0_00049": {
+    "successor_block_id": "B0_00069",
+    "successor_day_shift": 1
+  },
+  "B0_00069": {
+    "successor_block_id": "B0_00037",
+    "successor_day_shift": 1
+  },
+  "B0_00037": {
+    "successor_block_id": "B0_00033",
+    "successor_day_shift": 1
+  },
+  "B0_00033": {
+    "successor_block_id": "B0_00025",
+    "successor_day_shift": 1
+  },
+  "B0_00025": {
+    "successor_block_id": "B0_00023",
+    "successor_day_shift": 1
+  },
+  "B0_00023": {
+    "successor_block_id": "B0_00020",
+    "successor_day_shift": 1
+  },
+  "B0_00020": {
+    "successor_block_id": "B0_00035",
+    "successor_day_shift": 1
+  },
+  "B0_00035": {
+    "successor_block_id": "B0_00067",
+    "successor_day_shift": 1
+  },
+  "B0_00067": {
+    "successor_block_id": "B0_00034",
+    "successor_day_shift": 1
+  },
+  "B0_00034": {
+    "successor_block_id": "B0_00065",
+    "successor_day_shift": 1
+  },
+  "B0_00065": {
+    "successor_block_id": "B0_00102",
+    "successor_day_shift": 1
+  },
+  "B0_00102": {
+    "successor_block_id": "B0_00070",
+    "successor_day_shift": 1
+  },
+  "B0_00070": {
+    "successor_block_id": "B0_00087",
+    "successor_day_shift": 1
+  },
+  "B0_00087": {
+    "successor_block_id": "B0_00041",
+    "successor_day_shift": 1
+  },
+  "B0_00041": {
+    "successor_block_id": "B0_00036",
+    "successor_day_shift": 1
+  },
+  "B0_00036": {
+    "successor_block_id": "B0_00105",
+    "successor_day_shift": 1
+  },
+  "B0_00105": {
+    "successor_block_id": "B0_00094",
+    "successor_day_shift": 1
+  },
+  "B0_00094": {
+    "successor_block_id": "B0_00007",
+    "successor_day_shift": 1
+  },
+  "B0_00007": {
+    "successor_block_id": "B0_00088",
+    "successor_day_shift": 1
+  },
+  "B0_00088": {
+    "successor_block_id": "B0_00080",
+    "successor_day_shift": 1
+  },
+  "B0_00080": {
+    "successor_block_id": "B0_00043",
+    "successor_day_shift": 1
+  },
+  "B0_00043": {
+    "successor_block_id": "B0_00002",
+    "successor_day_shift": 1
+  },
+  "B0_00003": {
+    "successor_block_id": "B0_00011",
+    "successor_day_shift": 1
+  },
+  "B0_00011": {
+    "successor_block_id": "B0_00030",
+    "successor_day_shift": 1
+  },
+  "B0_00030": {
+    "successor_block_id": "B0_00021",
+    "successor_day_shift": 1
+  },
+  "B0_00021": {
+    "successor_block_id": "B0_00009",
+    "successor_day_shift": 1
+  },
+  "B0_00009": {
+    "successor_block_id": "B0_00057",
+    "successor_day_shift": 1
+  },
+  "B0_00057": {
+    "successor_block_id": "B0_00058",
+    "successor_day_shift": 1
+  },
+  "B0_00058": {
+    "successor_block_id": "B0_00091",
+    "successor_day_shift": 1
+  },
+  "B0_00091": {
+    "successor_block_id": "B0_00040",
+    "successor_day_shift": 1
+  },
+  "B0_00040": {
+    "successor_block_id": "B0_00062",
+    "successor_day_shift": 1
+  },
+  "B0_00062": {
+    "successor_block_id": "B0_00090",
+    "successor_day_shift": 1
+  },
+  "B0_00090": {
+    "successor_block_id": "B0_00108",
+    "successor_day_shift": 1
+  },
+  "B0_00108": {
+    "successor_block_id": "B0_00077",
+    "successor_day_shift": 1
+  },
+  "B0_00077": {
+    "successor_block_id": "B0_00005",
+    "successor_day_shift": 1
+  },
+  "B0_00005": {
+    "successor_block_id": "B0_00056",
+    "successor_day_shift": 1
+  },
+  "B0_00056": {
+    "successor_block_id": "B0_00075",
+    "successor_day_shift": 1
+  },
+  "B0_00075": {
+    "successor_block_id": "B0_00109",
+    "successor_day_shift": 1
+  },
+  "B0_00109": {
+    "successor_block_id": "B0_00064",
+    "successor_day_shift": 1
+  },
+  "B0_00064": {
+    "successor_block_id": "B0_00012",
+    "successor_day_shift": 1
+  },
+  "B0_00012": {
+    "successor_block_id": "B0_00083",
+    "successor_day_shift": 1
+  },
+  "B0_00083": {
+    "successor_block_id": "B0_00053",
+    "successor_day_shift": 1
+  },
+  "B0_00053": {
+    "successor_block_id": "B0_00114",
+    "successor_day_shift": 1
+  },
+  "B0_00114": {
+    "successor_block_id": "B0_00016",
+    "successor_day_shift": 1
+  },
+  "B0_00016": {
+    "successor_block_id": "B0_00082",
+    "successor_day_shift": 1
+  },
+  "B0_00082": {
+    "successor_block_id": "B0_00006",
+    "successor_day_shift": 1
+  },
+  "B0_00006": {
+    "successor_block_id": "B0_00086",
+    "successor_day_shift": 1
+  },
+  "B0_00086": {
+    "successor_block_id": "B0_00081",
+    "successor_day_shift": 1
+  },
+  "B0_00081": {
+    "successor_block_id": "B0_00045",
+    "successor_day_shift": 1
+  },
+  "B0_00045": {
+    "successor_block_id": "B0_00104",
+    "successor_day_shift": 1
+  },
+  "B0_00104": {
+    "successor_block_id": "B0_00028",
+    "successor_day_shift": 1
+  },
+  "B0_00028": {
+    "successor_block_id": "B0_00106",
+    "successor_day_shift": 1
+  },
+  "B0_00106": {
+    "successor_block_id": "B0_00066",
+    "successor_day_shift": 1
+  },
+  "B0_00066": {
+    "successor_block_id": "B0_00027",
+    "successor_day_shift": 1
+  },
+  "B0_00027": {
+    "successor_block_id": "B0_00003",
+    "successor_day_shift": 1
+  },
+  "B0_00004": {
+    "successor_block_id": "B0_00050",
+    "successor_day_shift": 1
+  },
+  "B0_00050": {
+    "successor_block_id": "B0_00018",
+    "successor_day_shift": 1
+  },
+  "B0_00018": {
+    "successor_block_id": "B0_00107",
+    "successor_day_shift": 1
+  },
+  "B0_00107": {
+    "successor_block_id": "B0_00031",
+    "successor_day_shift": 1
+  },
+  "B0_00031": {
+    "successor_block_id": "B0_00079",
+    "successor_day_shift": 1
+  },
+  "B0_00079": {
+    "successor_block_id": "B0_00059",
+    "successor_day_shift": 1
+  },
+  "B0_00059": {
+    "successor_block_id": "B0_00015",
+    "successor_day_shift": 1
+  },
+  "B0_00015": {
+    "successor_block_id": "B0_00024",
+    "successor_day_shift": 1
+  },
+  "B0_00024": {
+    "successor_block_id": "B0_00026",
+    "successor_day_shift": 1
+  },
+  "B0_00026": {
+    "successor_block_id": "B0_00115",
+    "successor_day_shift": 1
+  },
+  "B0_00115": {
+    "successor_block_id": "B0_00068",
+    "successor_day_shift": 1
+  },
+  "B0_00068": {
+    "successor_block_id": "B0_00112",
+    "successor_day_shift": 1
+  },
+  "B0_00112": {
+    "successor_block_id": "B0_00063",
+    "successor_day_shift": 1
+  },
+  "B0_00063": {
+    "successor_block_id": "B0_00055",
+    "successor_day_shift": 1
+  },
+  "B0_00055": {
+    "successor_block_id": "B0_00004",
+    "successor_day_shift": 1
+  },
+  "B0_00010": {
+    "successor_block_id": "B0_00039",
+    "successor_day_shift": 1
+  },
+  "B0_00039": {
+    "successor_block_id": "B0_00095",
+    "successor_day_shift": 1
+  },
+  "B0_00095": {
+    "successor_block_id": "B0_00042",
+    "successor_day_shift": 1
+  },
+  "B0_00042": {
+    "successor_block_id": "B0_00022",
+    "successor_day_shift": 1
+  },
+  "B0_00022": {
+    "successor_block_id": "B0_00051",
+    "successor_day_shift": 1
+  },
+  "B0_00051": {
+    "successor_block_id": "B0_00044",
+    "successor_day_shift": 1
+  },
+  "B0_00044": {
+    "successor_block_id": "B0_00047",
+    "successor_day_shift": 1
+  },
+  "B0_00047": {
+    "successor_block_id": "B0_00060",
+    "successor_day_shift": 1
+  },
+  "B0_00060": {
+    "successor_block_id": "B0_00010",
+    "successor_day_shift": 2
+  },
+  "B0_00013": {
+    "successor_block_id": "B0_00101",
+    "successor_day_shift": 1
+  },
+  "B0_00101": {
+    "successor_block_id": "B0_00038",
+    "successor_day_shift": 1
+  },
+  "B0_00038": {
+    "successor_block_id": "B0_00092",
+    "successor_day_shift": 1
+  },
+  "B0_00092": {
+    "successor_block_id": "B0_00013",
+    "successor_day_shift": 1
+  },
+  "B0_00014": {
+    "successor_block_id": "B0_00019",
+    "successor_day_shift": 1
+  },
+  "B0_00019": {
+    "successor_block_id": "B0_00054",
+    "successor_day_shift": 1
+  },
+  "B0_00054": {
+    "successor_block_id": "B0_00103",
+    "successor_day_shift": 1
+  },
+  "B0_00103": {
+    "successor_block_id": "B0_00072",
+    "successor_day_shift": 1
+  },
+  "B0_00072": {
+    "successor_block_id": "B0_00089",
+    "successor_day_shift": 1
+  },
+  "B0_00089": {
+    "successor_block_id": "B0_00078",
+    "successor_day_shift": 1
+  },
+  "B0_00078": {
+    "successor_block_id": "B0_00113",
+    "successor_day_shift": 1
+  },
+  "B0_00113": {
+    "successor_block_id": "B0_00052",
+    "successor_day_shift": 1
+  },
+  "B0_00052": {
+    "successor_block_id": "B0_00076",
+    "successor_day_shift": 1
+  },
+  "B0_00076": {
+    "successor_block_id": "B0_00100",
+    "successor_day_shift": 1
+  },
+  "B0_00100": {
+    "successor_block_id": "B0_00014",
+    "successor_day_shift": 1
+  },
+  "B0_00029": {
+    "successor_block_id": "B0_00029",
+    "successor_day_shift": 1
+  }
+}

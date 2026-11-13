@@ -1,0 +1,18 @@
+{
+  "protocol": "PC-REV08/REV02",
+  "status": "PROPOSED_NOT_HOMOLOGATED",
+  "total_fleet": 450,
+  "years": {
+    "2026": 100,
+    "2030": 300,
+    "2038": 450
+  },
+  "scenarios": [
+    "BAU",
+    "Realista",
+    "Cenario_1",
+    "Cenario_2"
+  ],
+  "pcc_import_limit_kw": 2500,
+  "historical_r0_r3_are_not_scenarios": true
+}

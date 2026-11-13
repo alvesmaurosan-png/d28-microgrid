@@ -1,0 +1,75 @@
+﻿{
+  "revision": "REV01",
+  "project": "D28",
+  "scope": "R0 D11-014 D11-018 D11-019 reposicoes",
+  "date": "2026-10-27",
+  "rows": 18,
+  "source_documents": [
+    [
+      "SRC-001",
+      "ABB",
+      "ABBG-00284-V01.01-EN",
+      "2023",
+      "p.3-4,6-8,11,14",
+      "EPD/PEP Terra CE 184 CC 4N4",
+      "https://library.e.abb.com/public/35fb1940743f42df9cfd7bcea4c14318/Environmental%20Product%20Declaration%20%28EPD%29%20T184%20CE.pdf",
+      "Verificado: fabricação 1.72E-4; EoL 1.30E-5; referência 1.65E6 kWh",
+      "Externo - fonte primária"
+    ],
+    [
+      "SRC-002",
+      "EPD International",
+      "EPD-IES-0025037:001",
+      "2025",
+      "Registro; PDF tabela GWP a extrair",
+      "GoodWe GW250K-HT",
+      "https://www.environdec.com/library/epd25037",
+      "Registro válido; GWP não transcrito",
+      "Externo - fonte primária"
+    ],
+    [
+      "SRC-003",
+      "EPD International",
+      "EPD-IES-0021556:001",
+      "2025",
+      "Registro; PDF tabela GWP a extrair",
+      "GoodWe GW320K-UT",
+      "https://www.environdec.com/library/epd21556",
+      "Registro válido; GWP não transcrito",
+      "Externo - fonte primária"
+    ],
+    [
+      "SRC-004",
+      "IEA PVPS Task 12",
+      "LCI PV 2026",
+      "2026",
+      "BOS / reciclagem a identificar",
+      "Life Cycle Inventories of Photovoltaic Systems",
+      "https://iea-pvps.org/key-topics/t12-lci-pv-systems-2026/",
+      "Referência metodológica; fatores não transcritos",
+      "Externo - inventário"
+    ],
+    [
+      "SRC-005",
+      "D28",
+      "Base_Mestre_D28_PC_REV07_REV02.xlsx",
+      "Interno",
+      "D07-016, D11-003, D11-004, D11-013, D11-014, D11-018, D11-019",
+      "Base Mestre D28",
+      "data/raw/parametros/Base_Mestre_D28_PC_REV07_REV02.xlsx",
+      "Referência interna; verificar versão e localização no repositório",
+      "Interno - não homologado"
+    ]
+  ],
+  "outputs": {
+    "D28_Matriz_Evidencias_Ambientais_D11_REV01.xlsx": "96e84134d97f19a7f9e2236d4cae638f2c8d13c3cfb15ae7384f8423f00e66f9",
+    "D28_Matriz_Evidencias_Ambientais_D11_REV01.csv": "d7eea24ffef30a2da495629768f529616a321a4dbd8dcca3fe016c41b7b965a2"
+  },
+  "status": "EVIDENCIAS_EXTRAIDAS_CONDICIONAIS_NAO_HOMOLOGADAS",
+  "rules": [
+    "no double counting",
+    "no implicit recycling credit",
+    "no implicit replacements",
+    "no transfer R0 to R1-R3"
+  ]
+}

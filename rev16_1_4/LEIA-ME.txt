@@ -1,0 +1,13 @@
+REV16.1.4b — Busca biobjetivo exploratoria R0/E100
+
+1. Copie busca_nsga2_r0_e100_rev16_1_4.py para rev16_1_4/ na raiz D28_PC_REV08_REV02.
+2. Ative .venv_rev02 e execute na raiz:
+
+python .\rev16_1_4\busca_nsga2_r0_e100_rev16_1_4.py --population 4 --generations 2 --epsilon 2500 --allow-stale-evidence
+
+Saida: results/REV16_1_4b_NSGA2_R0_E100/summary.json
+
+O script usa NSGA-II de pymoo, mas cada candidato que passa no filtro e avaliado pelo MILP anual original do executor REV16.1.4.
+Os resultados sao EXPLORATORIOS e NAO homologados; solver_termination ECONOMIC_PILOT_ONLY nao comprova gap certificado.
+Nao usar como fronteira cientifica final. O limite de tempo externo nao comprova inviabilidade.
+O cache identifica versoes de arquivos e premissas por SHA256. O resumo e atualizado a cada nova avaliacao.

@@ -1,0 +1,8 @@
+﻿bloqueio,estado,condicao
+B01,ABERTO,Calendário civil não conciliado; alinhamento por índice é provisório
+B02,ABERTO,Ausência de SOC e janelas individuais; demanda agregada não prova factibilidade individual
+B03,ABERTO,D05-003 e D05-004 mantidos sem substituição
+B04,ABERTO,D11-013 e D11-017 condicionados; F3 ACV incompleta
+B05,PARCIAL,Parâmetros mapeados; validação das restrições pendente
+B06,PARCIAL,Cinco cenários reconciliados; PKM e anualização não homologados
+B07,NAO_EXECUTADO,Ingestão NSGA-II + MILP ainda não testada

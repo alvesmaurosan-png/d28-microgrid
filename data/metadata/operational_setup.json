@@ -1,0 +1,22 @@
+{
+  "created_utc": "2026-10-24T17:21:49.231096+00:00",
+  "repository": "D28-Electric-Bus-Depot-Microgrid-Optimization",
+  "new_files": [
+    "src/d28/dispatch/milp.py",
+    "src/d28/optimization/nsga2.py",
+    "tests/physics/test_r0_milp.py",
+    "src/d28/__init__.py",
+    "src/d28/dispatch/__init__.py",
+    "src/d28/optimization/__init__.py",
+    "src/d28/objectives/__init__.py",
+    "src/d28/analysis/__init__.py",
+    "src/d28/data/__init__.py",
+    "data/raw/solar/D28_solar_8760_modelo.csv",
+    "config/experiments/research_protocol.json",
+    "pyproject.toml"
+  ],
+  "preserved_existing_files": [],
+  "pending": [],
+  "solver_executions": 0,
+  "scientific_results_status": "NOT_YET_EXECUTED"
+}

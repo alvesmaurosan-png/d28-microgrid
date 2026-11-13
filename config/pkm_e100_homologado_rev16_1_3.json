@@ -1,0 +1,13 @@
+﻿{
+    "scenario":  "R0/E100",
+    "interpretation":  "SYNTHETIC_COUNTERFACTUAL_NOT_OBSERVED",
+    "buses":  100,
+    "fleet_capex_opex_in_f1":  false,
+    "annual_pkm_approved":  true,
+    "evidence_type":  "RESEARCHER_METHODOLOGICAL_DECISION",
+    "annual_pkm":  137675700,
+    "annual_km_per_bus":  59859,
+    "average_passengers":  23,
+    "revision":  "REV16.1.3_G2_PKM",
+    "status":  "HOMOLOGATED_SYNTHETIC_REFERENCE"
+}

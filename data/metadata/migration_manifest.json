@@ -1,0 +1,167 @@
+{
+  "created_utc": "2026-10-24T16:58:15.293395+00:00",
+  "migration_policy": "selective_copy_without_source_mutation",
+  "copied_files": [
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_CONCILIACAO_LOCAL/sessoes_conciliadas_115.csv",
+      "repository_relative_path": "data/raw/logistics/sessoes_conciliadas_115.csv",
+      "bytes": 12618,
+      "sha256": "93de5cd1aba2ae7f5789458f1da15d83bbf931879f7f8fbcab8b2febb79e081d",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "transicoes_documentadas.json",
+      "repository_relative_path": "data/raw/logistics/transicoes_documentadas.json",
+      "bytes": 10583,
+      "sha256": "6f77215c149edb2aaacb76f57a4330e7c53b59d1465ec7ec4be3aaefde034afe",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_demanda_anual_E100_15min.csv",
+      "repository_relative_path": "data/processed/charging/D28_demanda_anual_E100_15min.csv",
+      "bytes": 3820883,
+      "sha256": "aa408fe3a1a0ddefae9aa1f54d7bd9991a7e4682b21de3463e3b9a8112c6fe96",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_eventos_anuais_E100.csv",
+      "repository_relative_path": "data/processed/charging/D28_eventos_anuais_E100.csv",
+      "bytes": 4575758,
+      "sha256": "cd3573a7a10ff1dba74ec2001e8414a1f0328b41327b41f4e888cd052a51445b",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_veiculos_sinteticos_E100.csv",
+      "repository_relative_path": "data/processed/charging/D28_veiculos_sinteticos_E100.csv",
+      "bytes": 10781,
+      "sha256": "95b4fe7ae3a051b236e2d6d1a689fdac0645e8b3efbebb6e2461b5e3c3c18de5",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_demanda_anual_E200_15min.csv",
+      "repository_relative_path": "data/processed/charging/D28_demanda_anual_E200_15min.csv",
+      "bytes": 3843046,
+      "sha256": "8c0a51191b02c849e6deaf17347c46c10d054d10ec4904e289941a56a62a13d3",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_eventos_anuais_E200.csv",
+      "repository_relative_path": "data/processed/charging/D28_eventos_anuais_E200.csv",
+      "bytes": 9160528,
+      "sha256": "a02875b8a43c22254a281a3f38e53800d56fb19da258da802c37c33242a00a0c",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_veiculos_sinteticos_E200.csv",
+      "repository_relative_path": "data/processed/charging/D28_veiculos_sinteticos_E200.csv",
+      "bytes": 21472,
+      "sha256": "258b3f7e5391959a44aec8a304023f090fd34ba681c7e96345e5ba59080e2f02",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_demanda_anual_E300_15min.csv",
+      "repository_relative_path": "data/processed/charging/D28_demanda_anual_E300_15min.csv",
+      "bytes": 3859673,
+      "sha256": "226d58f773011e7dd718e000dc07cf78d32a8b71af9ff533a2a8061b524e0fbc",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_eventos_anuais_E300.csv",
+      "repository_relative_path": "data/processed/charging/D28_eventos_anuais_E300.csv",
+      "bytes": 13742027,
+      "sha256": "783b48b10e875b2a5e9218104b30f0c1886a9bab59fb32184201bd82f8f9d82a",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_veiculos_sinteticos_E300.csv",
+      "repository_relative_path": "data/processed/charging/D28_veiculos_sinteticos_E300.csv",
+      "bytes": 32162,
+      "sha256": "ec3cbe99589ee7e8b284c40110855b9a4983a590fd6145248ba4d2ad416c07ce",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_demanda_anual_E375_15min.csv",
+      "repository_relative_path": "data/processed/charging/D28_demanda_anual_E375_15min.csv",
+      "bytes": 3869139,
+      "sha256": "a918e52edd02ada2925555eff6eba16048b423a2fd9b7b5837a9e91ad1a97d88",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_eventos_anuais_E375.csv",
+      "repository_relative_path": "data/processed/charging/D28_eventos_anuais_E375.csv",
+      "bytes": 17175140,
+      "sha256": "b8e6301f2831edca6d2b738f8884b9018043ed9606529dc5e1c02fa80f793c17",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_veiculos_sinteticos_E375.csv",
+      "repository_relative_path": "data/processed/charging/D28_veiculos_sinteticos_E375.csv",
+      "bytes": 40176,
+      "sha256": "d84f21f74798154ab4b900ee02774dcc12459de59e03ef3bda2eedf821edd659",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_demanda_anual_E450_15min.csv",
+      "repository_relative_path": "data/processed/charging/D28_demanda_anual_E450_15min.csv",
+      "bytes": 3875479,
+      "sha256": "2489bde822516ed8b7f64247099f32483a9a841e8be48a8b898677846cec895d",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_eventos_anuais_E450.csv",
+      "repository_relative_path": "data/processed/charging/D28_eventos_anuais_E450.csv",
+      "bytes": 20611674,
+      "sha256": "57376e144ece78ebd3c35dbb643335fca3521952d6f56e3603e80221b3d375f4",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/D28_veiculos_sinteticos_E450.csv",
+      "repository_relative_path": "data/processed/charging/D28_veiculos_sinteticos_E450.csv",
+      "bytes": 48194,
+      "sha256": "228f242c9013e18273581e9e9c73657787ced23b971c275f683e49d3fadd1de9",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "D28_ANUAL_CORRIGIDO_LOCAL/manifesto_anual.json",
+      "repository_relative_path": "data/metadata/manifesto_anual_original.json",
+      "bytes": 4799,
+      "sha256": "5730bd651fadd4af25c238118d74f99f57359c035405befadd0b655076eedf00",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "gerar_calendario_anual_corrigido.py",
+      "repository_relative_path": "scripts/gerar_calendario_anual.py",
+      "bytes": 8250,
+      "sha256": "75acadfedbf7e2a16876c2e33c20a0769de6ea08c50b7bcaacca607949ba3141",
+      "status": "COPIED_UNMODIFIED"
+    },
+    {
+      "source_project": "Piloto_M2",
+      "source_relative_path": "preparar_entradas_anuais.py",
+      "repository_relative_path": "scripts/preparar_entradas_anuais.py",
+      "bytes": 4303,
+      "sha256": "72af33d42836d174c6630d94d32dd55f25daae2758769a1614ed652f6038c2f5",
+      "status": "COPIED_UNMODIFIED"
+    }
+  ],
+  "missing_files": []
+}

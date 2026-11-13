@@ -1,0 +1,20 @@
+{
+  "status": "PENDENTE_HOMOLOGACAO_NAO_EXECUTAVEL",
+  "currency": "BRL_2026_CONSTANT",
+  "scenarios": ["BAU", "Realista", "Cenario_1", "Cenario_2"],
+  "reference_years": [2026, 2030, 2038],
+  "fleet_total_synthetic": 450,
+  "discount_rate_real": null,
+  "discount_rate_conflict": "Base Mestre D10-003 12% vs matriz diesel 8%",
+  "horizon_years": 20,
+  "fleet_bev_capex_brl_per_bus": null,
+  "fleet_diesel_capex_brl_per_bus": null,
+  "fleet_gas_capex_brl_per_bus": null,
+  "bev_maintenance_brl_per_bus_year": null,
+  "diesel_maintenance_brl_per_bus_year": null,
+  "gas_maintenance_brl_per_bus_year": null,
+  "gas_consumption_nm3_per_km": null,
+  "gas_price_brl_per_nm3": null,
+  "pkm_attended_source": null,
+  "status_rule": "null=PENDING; 0=ZERO_EXPLICITLY_EVIDENCED"
+}

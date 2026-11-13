@@ -1,0 +1,14 @@
+{
+  "status": "CANDIDATE_NOT_HOMOLOGATED",
+  "source_A": "D28-Electric-Bus-Depot-Microgrid-Optimization.zip",
+  "source_B": "D28_Otimizacao_PC_REV08_REV01(1).zip",
+  "sha256_A": "6e2e898dc6497a70bbfebce71018bfb002a0141a2e63a1b652ba1802b398632c",
+  "sha256_B": "2635e2985fd0f3ab57647b94e5543702cc2d084a63de1a0f70992f002fcfb3e8",
+  "candidate_files": 165,
+  "conflicts": 6,
+  "B_only_added": 60,
+  "policy": "A as operational baseline, B unique files added, same-path conflicts selected A pending review; historical files excluded from operational tree; no Git history reconstructed",
+  "local_pytest_returncode": 2,
+  "local_pytest_tail": ", level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntests/dispatch/test_chp.py:4: in <module>\n    import pyomo.environ as p\nE   ModuleNotFoundError: No module named 'pyomo'\n_________ ERROR collecting tests/dispatch/test_chp_fuel_integration.py _________\nImportError while importing test module '/mnt/data/D28_REPOSITORIO_CANDIDATO_REV01/tests/dispatch/test_chp_fuel_integration.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.13/importlib/__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntests/dispatch/test_chp_fuel_integration.py:4: in <module>\n    import pyomo.environ as p\nE   ModuleNotFoundError: No module named 'pyomo'\n__________________ ERROR collecting tests/dispatch/test_r1.py __________________\nImportError while importing test module '/mnt/data/D28_REPOSITORIO_CANDIDATO_REV01/tests/dispatch/test_r1.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.13/importlib/__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntests/dispatch/test_r1.py:4: in <module>\n    import pyomo.environ as p\nE   ModuleNotFoundError: No module named 'pyomo'\n=========================== short test summary info ============================\nERROR tests/dispatch/test_chp.py\nERROR tests/dispatch/test_chp_fuel_integration.py\nERROR tests/dispatch/test_r1.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 3 errors during collection !!!!!!!!!!!!!!!!!!!!\n2 skipped, 3 errors in 0.30s\n",
+  "local_test_note": "Reteste com PYTHONPATH=src: coleta bloqueada por pyomo ausente no ambiente de auditoria (Python 3.13); não é falha demonstrada do projeto. Testar no Python 3.11 com dependências instaladas."
+}

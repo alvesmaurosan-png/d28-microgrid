@@ -1,0 +1,18 @@
+{
+  "classification": "DOCUMENTARY_EVIDENCE_INVENTORY_NOT_CONTRACT_VALIDATION",
+  "contract_status": "NOT_DOCUMENTED",
+  "evidence_inventory": [
+    {
+      "source": "REV05/REV06 série de despacho",
+      "supports": "energia e pico físicos",
+      "does_not_support": "modalidade, tarifas ou faturamento contratual"
+    }
+  ],
+  "missing_evidence": [
+    "contrato e demanda contratada por posto",
+    "modalidade tarifária e vigência",
+    "tabela tarifária homologada com componentes aplicáveis",
+    "calendário de ponta/feriados e horários da distribuidora",
+    "regras de medição, demanda, ultrapassagem, tributos, bandeiras e encargos"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "referencia": "PC-REV07",
+  "estado": "entradas congeladas para desenvolvimento; homologação científica pendente",
+  "arquivos": {
+    "00_LEIA_ME_PRIMEIRO.md": {
+      "sha256": "bd63742739af85d1a5e3d84117fb00f6c64c783489b93f4222b118b37133da1c",
+      "bytes": 1424
+    },
+    "01_PROTOCOLO/PC_REV07_Protocolo_Cientifico_Tecnico_D28.docx": {
+      "sha256": "a0718899eea49577dae1a363510839157e626706200bdb8e38a4235838ea378e",
+      "bytes": 54044
+    },
+    "02_PARAMETROS/Base_Mestre_D28_PC_REV07_REV02.xlsx": {
+      "sha256": "425248ab5436cf4c9891556fdb614d6326b8a5c06ec8aedec1b97fc402692336",
+      "bytes": 32914
+    },
+    "03_SOLAR/D28_solar_15min_REV12_1_3.csv": {
+      "sha256": "3bf1eccaf1482f4589b03e3d931b12e5c572125992a61ecaf301d88f71725083",
+      "bytes": 467615
+    },
+    "03_SOLAR/D28_solar_8760_modelo.csv": {
+      "sha256": "e213c4e12f975b1aa0b061193d1faf8f36517f45f3c15df6a9e787ab25f21ae9",
+      "bytes": 1450594
+    },
+    "04_DEMANDA/D28_REV09_demanda_15min.csv": {
+      "sha256": "1f99c20a9b2892b3d5d652dea2affe2926a1eee0a0187f43423a2f1b8ca3015e",
+      "bytes": 2168553
+    },
+    "05_INTERFACE/DECISOES_B03_B06.csv": {
+      "sha256": "fd1d78a7065d46ebfb148b89f040b88e712d6ecfc25779b2e4a3a9e6d68e8eb5",
+      "bytes": 2015
+    },
+    "05_INTERFACE/ESTADO_DOS_BLOQUEIOS.csv": {
+      "sha256": "594643eb51604efb9bd020b2efc716c070be941cfb268245a15b9469f4512849",
+      "bytes": 558
+    },
+    "05_INTERFACE/MAPEAMENTO_137_IDS_B03_B06.csv": {
+      "sha256": "dffdb0ea151d5c2dca35487c83685c4655aac11eda228ee555364abeeaf524e5",
+      "bytes": 71491
+    },
+    "05_INTERFACE/RECONCILIACAO_137_IDS_REC_REV04.csv": {
+      "sha256": "54c3cec42d6b8777420978bb0be4e78c4b96cbf4f8051366439146cfe1c09396",
+      "bytes": 127557
+    }
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "status": "STATIC_CODE_AUDIT",
+  "modules": {
+    "milp": {
+      "path": ".internal_review/src/d28/dispatch/milp.py",
+      "functions": [
+        {
+          "name": "build_r0_smoke",
+          "start_line": 2,
+          "end_line": 11,
+          "arguments": [
+            "load_kw",
+            "pv_pu",
+            "pv_capacity_kw",
+            "pcc_cap_kw"
+          ],
+          "source_excerpt": "def build_r0_smoke(load_kw, pv_pu, pv_capacity_kw, pcc_cap_kw=2500.0):\n    import pyomo.environ as p\n    if len(load_kw)!=len(pv_pu) or not load_kw:raise ValueError('Séries inválidas')\n    m=p.ConcreteModel();m.T=p.RangeSet(0,len(load_kw)-1)\n    m.grid=p.Var(m.T,domain=p.NonNegativeReals,bounds=(0,pcc_cap_kw))\n    m.pv=p.Var(m.T,domain=p.NonNegativeReals)\n    m.pv_cap=p.Constraint(m.T,rule=lambda m,t:m.pv[t]<=pv_capacity_kw*float(pv_pu[t]))\n    m.balance=p.Constraint(m.T,rule=lambda m,t:m.grid[t]+m.pv[t]==float(load_kw[t]))\n    m.obj=p.Objective(expr=sum(m.grid[t] for t in m.T),sense=p.minimize)\n    return m"
+        },
+        {
+          "name": "build_r0_milp",
+          "start_line": 13,
+          "end_line": 165,
+          "arguments": [
+            "load_kw",
+            "pv_pu",
+            "pv_capacity_kw",
+            "bess_capacity_kwh",
+            "pcs_power_kw"
+          ],
+          "source_excerpt": "def build_r0_milp(\n    load_kw,\n    pv_pu,\n    pv_capacity_kw,\n    bess_capacity_kwh,\n    pcs_power_kw,\n    *,\n    soh=1.0,\n    pcc_cap_kw=2500.0,\n    dt_hours=0.25,\n    eta_charge=0.922,\n    eta_discharge=0.922,\n    initial_soc=0.50,\n    terminal_policy=\"free\",\n    terminal_energy_kwh=None,\n    pv_capacity_max_kwp=None,\n):\n    \"\"\"Constrói MILP R0 agregado sintético (EQ-001 a EQ-010, escopo PV+BESS).\n\n    load_kw representa a demanda AC total, sem dupla contagem de recarga.\n    pv_pu é uma série específica previamente validada (kW/kWp); não se\n    aplica fator de geração adicional. Sem CHP, exportação ou déficit.\n\n    terminal_policy: 'free', 'cyclic' ou 'fixed'. A opção 'cyclic' só pode\n    ser escolhida se o horizonte justificar fechamento cíclico (EQ-009).\n    SOH é exógeno; política de reposição não é inferida (EQ-010).\n    \"\"\"\n    import math\n    import pyomo.environ as p\n\n    try:\n        loads = [float(x) for x in load_kw]\n        solar = [float(x) for x in pv_pu]\n    except (TypeError, ValueError) as exc:\n        raise ValueError(\"Séries de demanda e PV devem ser numéricas\") from exc\n    if not loads or len(loads) != len(solar):\n        raise ValueError(\"Séries vazias ou co"
+        }
+      ],
+      "constraint_assignments": [
+        "m=p.ConcreteModel();m.T=p.RangeSet(0,len(load_kw)-1)",
+        "m.grid=p.Var(m.T,domain=p.NonNegativeReals,bounds=(0,pcc_cap_kw))",
+        "m.pv=p.Var(m.T,domain=p.NonNegativeReals)",
+        "m.pv_cap=p.Constraint(m.T,rule=lambda m,t:m.pv[t]<=pv_capacity_kw*float(pv_pu[t]))",
+        "m.balance=p.Constraint(m.T,rule=lambda m,t:m.grid[t]+m.pv[t]==float(load_kw[t]))",
+        "m.obj=p.Objective(expr=sum(m.grid[t] for t in m.T),sense=p.minimize)",
+        "m.T = p.RangeSet(0, n - 1)",
+        "m.S = p.RangeSet(0, n)  # estados incluem o instante terminal",
+        "m.load_kw = p.Param(m.T, initialize=dict(enumerate(loads)))",
+        "m.pv_pu = p.Param(m.T, initialize=dict(enumerate(solar)))",
+        "m.grid = p.Var(m.T, domain=p.NonNegativeReals, bounds=(0, pcc_cap_kw))",
+        "m.pv = p.Var(m.T, domain=p.NonNegativeReals)",
+        "m.pv_curt = p.Var(m.T, domain=p.NonNegativeReals)",
+        "m.bess_charge = p.Var(m.T, domain=p.NonNegativeReals)",
+        "m.bess_discharge = p.Var(m.T, domain=p.NonNegativeReals)",
+        "m.bess_mode = p.Var(m.T, domain=p.Binary)",
+        "m.bess_energy = p.Var(m.S, domain=p.NonNegativeReals,",
+        "m.balance = p.Constraint(",
+        "m.pv_accounting = p.Constraint(",
+        "m.bess_energy_balance = p.Constraint(",
+        "m.bess_charge_limit = p.Constraint(",
+        "m.bess_discharge_limit = p.Constraint(",
+        "m.bess_initial = p.Constraint(expr=m.bess_energy[0] == initial_soc * capacity_usable)",
+        "m.bess_terminal = p.Constraint(expr=m.bess_energy[n] == m.bess_energy[0])",
+        "m.bess_terminal = p.Constraint(expr=m.bess_energy[n] == terminal_energy_kwh)",
+        "m.obj = p.Objective(expr=dt_hours * sum(m.grid[t] for t in m.T), sense=p.minimize)"
+      ],
+      "imports": [
+        "import pyomo.environ as p",
+        "import math",
+        "import pyomo.environ as p"
+      ]
+    },
+    "nsga2": {
+      "path": ".internal_review/src/d28/optimization/nsga2.py",
+      "functions": [
+        {
+          "name": "run_scientific_nsga2",
+          "start_line": 2,
+          "end_line": 3,
+          "arguments": [],
+          "source_excerpt": "def run_scientific_nsga2(*args,**kwargs):\n    raise RuntimeError('BLOQUEADO: M2–M5 e decisão de objetivo interno do MILP pendentes; sem otimização triobjetiva científica')"
+        }
+      ],
+      "constraint_assignments": [],
+      "imports": []
+    },
+    "tests": {
+      "path": ".internal_review/tests/physics/test_r0_milp.py",
+      "functions": [
+        {
+          "name": "solve",
+          "start_line": 8,
+          "end_line": 15,
+          "arguments": [
+            "model"
+          ],
+          "source_excerpt": "def solve(model):\n    solver = p.SolverFactory(\"appsi_highs\")\n    if not solver.available():\n        pytest.skip(\"HiGHS indisponível\")\n    result = solver.solve(model, load_solutions=False)\n    assert result.solver.termination_condition == p.TerminationCondition.optimal\n    model.solutions.load_from(result)\n    return model"
+        },
+        {
+          "name": "test_legacy_smoke_preserved",
+          "start_line": 18,
+          "end_line": 22,
+          "arguments": [],
+          "source_excerpt": "def test_legacy_smoke_preserved():\n    model = build_r0_smoke([100., 150.], [0., 0.5], 100.)\n    solve(model)\n    assert p.value(model.grid[0]) == pytest.approx(100)\n    assert p.value(model.grid[1]) == pytest.approx(100)"
+        },
+        {
+          "name": "test_r0_balance_pv_curtailment_and_pcc",
+          "start_line": 25,
+          "end_line": 35,
+          "arguments": [],
+          "source_excerpt": "def test_r0_balance_pv_curtailment_and_pcc():\n    model = solve(build_r0_milp([10., 50., 20.], [0., 1., 0.5], 100., 0., 0.))\n    for t in model.T:\n        assert p.value(model.grid[t] + model.pv[t] + model.bess_discharge[t]\n                       - model.load_kw[t] - model.bess_charge[t]) == pytest.approx(0, abs=1e-7)\n        assert p.value(model.pv[t] + model.pv_curt[t]) == pytest.approx(\n            100 * p.value(model.pv_pu[t]), abs=1e-7\n        )\n        assert 0 <= p.value(model.grid[t]) <= 2500\n    assert p.value(model.pv_curt[1]) == pytest.approx(50, abs=1e-7)\n    assert p.value(model.obj) == pytest.approx(2.5, abs=1e-7)"
+        },
+        {
+          "name": "test_bess_physics_and_cyclic_terminal",
+          "start_line": 38,
+          "end_line": 57,
+          "arguments": [],
+          "source_excerpt": "def test_bess_physics_and_cyclic_terminal():\n    model = solve(build_r0_milp(\n        [80., 160., 80., 160.], [0., 0., 0., 0.], 0.,\n        200., 100., terminal_policy=\"cyclic\", pcc_cap_kw=2500.\n    ))\n    assert p.value(model.bess_energy[0]) == pytest.approx(100)\n    assert p.value(model.bess_energy[4]) == pytest.approx(100)\n    for t in model.T:\n        charge = p.value(model.bess_charge[t])\n        discharge = p.value(model.bess_discharge[t])\n        mode = p.value(model.bess_mode[t])\n        assert charge <= 100 * mode + 1e-7\n        assert discharge <= 100 * (1 - mode) + 1e-7\n        assert charge * discharge == pytest.approx(0, abs=1e-7)\n        assert p.value(model.bess_energy[t + 1]) == pytest.approx(\n            p.value(model.bess_energy[t]) + 0.922 * charge * 0.25\n            - discharge * 0.25 / 0.922, abs=1e-7\n        )\n    for s in model.S:\n        assert 20 - 1e-7 <= p.value(model.bess_energy[s]) <= 180 + 1e-7"
+        },
+        {
+          "name": "test_soh_limits_and_terminal_fixed",
+          "start_line": 60,
+          "end_line": 68,
+          "arguments": [],
+          "source_excerpt": "def test_soh_limits_and_terminal_fixed():\n    model = solve(build_r0_milp(\n        [0.], [0.], 0., 100., 50., soh=0.8,\n        terminal_policy=\"fixed\", terminal_energy_kwh=40.\n    ))\n    assert p.value(model.bess_energy[0]) == pytest.approx(40)\n    assert p.value(model.bess_energy[1]) == pytest.approx(40)\n    assert model.bess_energy[1].ub == pytest.approx(72)\n    assert model.bess_energy[1].lb == pytest.approx(8)"
+        },
+        {
+          "name": "test_pcc_infeasible_without_slack",
+          "start_line": 71,
+          "end_line": 78,
+          "arguments": [],
+          "source_excerpt": "def test_pcc_infeasible_without_slack():\n    model = build_r0_milp([2600.], [0.], 0., 0., 0.)\n    solver = p.SolverFactory(\"appsi_highs\")\n    if not solver.available():\n        pytest.skip(\"HiGHS indisponível\")\n    # O solver pode lançar exceção ao tentar carregar solução inviável.\n    result = solver.solve(model, load_solutions=False)\n    assert result.solver.termination_condition == p.TerminationCondition.infeasible"
+        },
+        {
+          "name": "test_invalid_parameters",
+          "start_line": 88,
+          "end_line": 93,
+          "arguments": [
+            "kwargs"
+          ],
+          "source_excerpt": "def test_invalid_parameters(kwargs):\n    params = dict(load_kw=[10.], pv_pu=[0.], pv_capacity_kw=20.,\n                  bess_capacity_kwh=100., pcs_power_kw=50.)\n    params.update(kwargs)\n    with pytest.raises(ValueError):\n        build_r0_milp(**params)"
+        }
+      ],
+      "constraint_assignments": [],
+      "imports": [
+        "import pytest",
+        "from d28.dispatch.milp import build_r0_milp, build_r0_smoke"
+      ]
+    }
+  },
+  "solver_executions": 0,
+  "scientific_release": "BLOCKED"
+}

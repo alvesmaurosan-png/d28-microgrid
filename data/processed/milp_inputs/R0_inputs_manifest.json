@@ -1,0 +1,58 @@
+{
+  "status": "CHRONOLOGICAL_INPUTS_PREPARED",
+  "source_solar": "data\\raw\\solar\\D28_solar_8760_modelo.csv",
+  "solar_points": 8760,
+  "solar_resolution_minutes": 60,
+  "dispatch_resolution_minutes": 15,
+  "solar_conversion": "hourly_mean_power_repeated_four_times",
+  "alignment": "calendar_position_not_same_observation_year",
+  "load_semantics": "charging_AC_only",
+  "scenarios": [
+    {
+      "scenario": "E100",
+      "intervals": 35040,
+      "charging_energy_ac_kwh": 7267276.5533,
+      "charging_peak_ac_kw": 7121.7356,
+      "solar_source": "D28_solar_8760_modelo.csv",
+      "alignment": "calendar_position_reference_year",
+      "non_vehicle_load_included": false
+    },
+    {
+      "scenario": "E200",
+      "intervals": 35040,
+      "charging_energy_ac_kwh": 14531127.6074,
+      "charging_peak_ac_kw": 12623.1962,
+      "solar_source": "D28_solar_8760_modelo.csv",
+      "alignment": "calendar_position_reference_year",
+      "non_vehicle_load_included": false
+    },
+    {
+      "scenario": "E300",
+      "intervals": 35040,
+      "charging_energy_ac_kwh": 21820673.2719,
+      "charging_peak_ac_kw": 18105.1711,
+      "solar_source": "D28_solar_8760_modelo.csv",
+      "alignment": "calendar_position_reference_year",
+      "non_vehicle_load_included": false
+    },
+    {
+      "scenario": "E375",
+      "intervals": 35040,
+      "charging_energy_ac_kwh": 27137765.3477,
+      "charging_peak_ac_kw": 21883.0435,
+      "solar_source": "D28_solar_8760_modelo.csv",
+      "alignment": "calendar_position_reference_year",
+      "non_vehicle_load_included": false
+    },
+    {
+      "scenario": "E450",
+      "intervals": 35040,
+      "charging_energy_ac_kwh": 32590977.8946,
+      "charging_peak_ac_kw": 25958.2586,
+      "solar_source": "D28_solar_8760_modelo.csv",
+      "alignment": "calendar_position_reference_year",
+      "non_vehicle_load_included": false
+    }
+  ],
+  "solver_executions": 0
+}
