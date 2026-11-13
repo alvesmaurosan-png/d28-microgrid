@@ -103,7 +103,7 @@ def analytical_prefilter(design, epsilon, loads, solar, pcc_limit_kw,
             'note': 'Potencia instantanea apenas; ignora SOC, energia, eficiencia e duracao.'}
 
 
-def evaluate(design, epsilon, inputs, cfg, econ, contract, prices, evidence, solver):
+def evaluate(design, epsilon, inputs, cfg, econ, contract, prices, evidence, solver, solver_time_limit_seconds=None):
     from d28.optimization.economic_dispatch_f1f2 import solve_economic
     from d28.economics.f1 import annual_bill, present_value, validate_design
     record={'design':design,'epsilon_kw':epsilon,'accepted':False,'reason':None}
@@ -119,8 +119,10 @@ def evaluate(design, epsilon, inputs, cfg, econ, contract, prices, evidence, sol
         result=solve_economic('R0',design,inputs,prices,epsilon_kw=epsilon,
                               months=inputs.months,
                               demand_tariff_brl_kw_month=cfg.demand_tariff_brl_per_kw_month,
-                              solver_name=solver)
+                              solver_name=solver, solver_time_limit_seconds=solver_time_limit_seconds)
         record['solver_status']=result.get('status')
+        record['solver_state']=result.get('solver_state', 'UNKNOWN')
+        record['solver_elapsed_seconds']=result.get('solver_elapsed_seconds')
         record['solver_termination']=result.get('solver_termination',result.get('reason'))
         if result.get('status')!='PASS':
             record['reason']='MILP_NOT_CERTIFIED_OPTIMAL_OR_AUDIT_FAILED'
@@ -176,6 +178,7 @@ def main():
     p.add_argument('--epsilons',nargs='+',type=float,required=True)
     p.add_argument('--out',default='results/REV16_1_4_R0_E100_exploratorio.json')
     p.add_argument('--solver',default='appsi_highs')
+    p.add_argument('--solver-time-limit-seconds',type=float,default=None)
     p.add_argument('--max-solves',type=int,default=3,help='Maximo de candidatos, incluindo rejeicoes analiticas')
     p.add_argument('--allow-stale-evidence',action='store_true',help='Registra hashes divergentes; nao homologa')
     args=p.parse_args()
@@ -201,6 +204,7 @@ def main():
             and near(flat['demand_rate_brl_kw_month'],econ['demand_tariff_brl_per_kw_month'],1e-12)
             and near(flat['contracted_demand_kw'],econ['pcc_import_limit_kw'],1e-12),'FLAT_TARIFF_INCONSISTENT')
     require(args.max_solves>0,'INVALID_MAX_SOLVES')
+    require(args.solver_time_limit_seconds is None or (math.isfinite(args.solver_time_limit_seconds) and args.solver_time_limit_seconds>0),'INVALID_SOLVER_TIME_LIMIT')
     designs=load_designs(args.designs)
     require(len(designs)*len(args.epsilons)<=args.max_solves,'TOO_MANY_MILP_SOLVES_USE_MAX_SOLVES_EXPLICITLY')
     require(all(math.isfinite(e) and 0<=e<=econ['pcc_import_limit_kw'] for e in args.epsilons),'INVALID_EPSILON')
@@ -225,7 +229,7 @@ def main():
     for design in designs:
         for eps in args.epsilons:
             print(f'R0/E100: PV={design["pv_kw"]} BESS={design["bess_kwh"]} PCS={design["pcs_kw"]} epsilon={eps}',flush=True)
-            rec=evaluate(design,eps,inputs,cfg,econ,contract,prices,evidence,args.solver)
+            rec=evaluate(design,eps,inputs,cfg,econ,contract,prices,evidence,args.solver,args.solver_time_limit_seconds)
             records.append(rec)
             print('  ',rec['reason'],flush=True)
             # Checkpoint apos cada MILP

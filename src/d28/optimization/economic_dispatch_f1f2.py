@@ -6,6 +6,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Sequence
 import math
+import time
 import pyomo.environ as p
 from d28.optimization.biobjective_milp_connector import ConnectorInputs, build_route_milp
 
@@ -31,11 +32,13 @@ def _validate(prices: EnergyPrices, n: int, route: str):
 
 def solve_economic(route: str, design: dict, inputs: ConnectorInputs, prices: EnergyPrices,
                    *, epsilon_kw: float | None = None, solver_name='appsi_highs', tolerance=1e-5,
-                   months=None, demand_tariff_brl_kw_month=None):
+                   months=None, demand_tariff_brl_kw_month=None, solver_time_limit_seconds=None):
     """Minimiza custo variavel operacional; NAO calcula F1 anual.
     Caso R2: producao e gas_loss sao volumes por intervalo; combustivel R2
     nao e cobrado separadamente se seu custo ja esta na producao (configure 0).
     """
+    if solver_time_limit_seconds is not None and (not math.isfinite(float(solver_time_limit_seconds)) or float(solver_time_limit_seconds)<=0):
+        raise ValueError('INVALID_SOLVER_TIME_LIMIT')
     n=len(inputs.load_kw)
     _validate(prices,n,route)
     if not math.isfinite(inputs.dt_hours) or inputs.dt_hours<=0: raise ValueError('INVALID_DT')
@@ -82,9 +85,16 @@ def solve_economic(route: str, design: dict, inputs: ConnectorInputs, prices: En
         solver = p.SolverFactory(solver_name)
         if not solver.available(exception_flag=False):
             raise RuntimeError('SOLVER_UNAVAILABLE')
+    if solver_time_limit_seconds is not None:
+        if solver_name == 'appsi_highs':
+            solver.config.time_limit = float(solver_time_limit_seconds)
+        else:
+            # A chave de tempo e especifica de cada solver; nao assumir suporte.
+            raise ValueError('TIME_LIMIT_SUPPORTED_ONLY_FOR_APPSI_HIGHS')
     # Never load variables before verifying that HiGHS found a feasible solution.
     # APPsi's persistent interface uses config.load_solution; other solvers use
     # the solve(..., load_solutions=False) keyword.
+    solve_start = time.perf_counter()
     try:
         if solver_name == 'appsi_highs':
             solver.config.load_solution = False
@@ -94,12 +104,20 @@ def solve_economic(route: str, design: dict, inputs: ConnectorInputs, prices: En
     except RuntimeError as exc:
         return {'route':route,'status':'FAILED',
                 'reason':'SOLVER_RUNTIME_ERROR', 'solver_exception':str(exc),
-                'solver_termination':'UNKNOWN_AFTER_EXCEPTION',
+                'solver_termination':'UNKNOWN_AFTER_EXCEPTION', 'solver_state':'ERROR', 'solver_elapsed_seconds':time.perf_counter()-solve_start,
                 'milp_executed':True,'f1_annual_brl_per_pkm':None,'f3_excluded':True}
+    elapsed = time.perf_counter()-solve_start
     term = result.termination_condition if solver_name == 'appsi_highs' else result.solver.termination_condition
-    if str(term).split(".")[-1].strip().lower() != "optimal":
-        return {'route':route,'status':'FAILED','reason':str(term),
-                'solver_termination':str(term),'milp_executed':True,
+    term_name = str(term).split(".")[-1].strip().lower()
+    if term_name != "optimal":
+        if term_name in ('infeasible', 'proveninfeasible'):
+            state = 'INFEASIBLE'
+        elif term_name in ('maxtimelimit', 'timelimit', 'max_time_limit'):
+            state = 'TIME_LIMIT'
+        else:
+            state = 'UNKNOWN'
+        return {'route':route,'status':'FAILED','reason':str(term), 'solver_state':state,
+                'solver_elapsed_seconds':elapsed, 'solver_termination':str(term),'milp_executed':True,
                 'f1_annual_brl_per_pkm':None,'f3_excluded':True}
     if solver_name == 'appsi_highs':
         solver.load_vars()
@@ -124,6 +142,8 @@ def solve_economic(route: str, design: dict, inputs: ConnectorInputs, prices: En
             'cyclic_bess':abs(value(m.bess_energy[0])-value(m.bess_energy[n]))<=tolerance}
     return {'route':route,'status':'PASS' if all(checks.values()) else 'FAILED',
         'reason':'ECONOMIC_PILOT_ONLY' if all(checks.values()) else 'AUDIT_FAILED',
+        'solver_state':'OPTIMAL' if all(checks.values()) else 'AUDIT_FAILED',
+        'solver_elapsed_seconds':elapsed, 'solver_termination':str(term),
         'f1_annual_brl_per_pkm':None,'f3_excluded':True,'nsga2_executed':False,
         'annual_accounting_performed':False,'physical_equations_modified':False,
         'objective':'PILOT_ENERGY_PLUS_MONTHLY_DEMAND_BRL' if demand_enabled else 'PILOT_VARIABLE_ENERGY_COST_BRL',
